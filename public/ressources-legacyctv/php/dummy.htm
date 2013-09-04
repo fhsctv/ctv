@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title></title>
+<meta name="author" content="shaendly">
+<meta name="editor" content="html-editor phase 5">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<script text="JavaScript">
+//dekodiert Sonderzeichen
+function htmlentities_decode(str)
+{
+         while(str.search("&auml;") != -1)
+         {
+                 //in ä umwandeln
+                 str = str.replace("&auml;","ä");
+         }
+
+         while(str.search("&auml;") != -1)
+         {
+                 //in Ä umwandeln
+                 str = str.replace("&Auml;","Ä");
+         }
+
+         while(str.search("&ouml;") != -1)
+         {
+                 //in ö umwandeln
+                 str = str.replace("&ouml;","ö");
+         }
+
+         while(str.search("&Ouml;") != -1)
+         {
+                 //in Ö umwandeln
+                 str = str.replace("&Ouml;","Ö");
+         }
+
+         while(str.search("&uuml;") != -1)
+         {
+                 //in ü umwandeln
+                 str = str.replace("&uuml;","ü");
+         }
+
+         while(str.search("&Uuml;") != -1)
+         {
+                 //in Ü umwandeln
+                 str = str.replace("&Uuml;","Ü");
+         }
+
+         while(str.search("&szlig;") != -1)
+         {
+                 //in ß umwandeln
+                 str = str.replace("&szlig;","ß");
+         }
+
+         while(str.search("%20") != -1)
+         {
+                 //in Leerzeichen umwandeln
+                 str = str.replace("%20"," ");
+         }
+
+         while(str.search("&amp;") != -1)
+         {
+                 //in & umwandeln
+                 str = str.replace("&amp;","&");
+         }
+
+         while(str.search("&lt;") != -1)
+         {
+                 //in < umwandeln
+                 str = str.replace("&lt;","<");
+         }
+
+         while(str.search("&gt;") != -1)
+         {
+                 //in > umwandeln
+                 str = str.replace("&gt;",">");
+         }
+
+         /*while(str.search("&quot;") != -1)
+         {
+                 //in " umwandeln
+                 str = str.replace("&quot;",""");
+         }*/
+
+         return str;
+}
+</script>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#FF0000" alink="#FF0000" vlink="#FF0000">
+<script text="JavaScript">
+         var Antwort = window.location.search.substr(1,window.location.search.length);
+
+         AntwortAr = Antwort.split("~");
+
+         var y = 0;
+         var abstand = 40;
+
+         for(var i = 0; i < (AntwortAr.length / 3); i++)
+         {
+                 /////////////
+                 //Abschnitt//
+                 /////////////
+
+                 var divAbschnitt = document.createElement("div");
+
+
+                 /////////
+                 //Firma//
+                 /////////
+
+                 /*var divFirma = document.createElement("div");
+
+                 divFirma.style.position = "absolute";
+                 divFirma.style.top = y + "px";
+
+                 var divFirmaText = document.createTextNode(htmlentities_decode(AntwortAr[(i * 3)]));
+
+                 divFirma.appendChild(divFirmaText);
+
+                 divAbschnitt.appendChild(divFirma);*/
+
+                 ////////////////
+                 //Ueberschrift//
+                 ////////////////
+
+                 //y += abstand;
+
+                 var divUeberschrift = document.createElement("div");
+
+                 divUeberschrift.style.position = "absolute";
+                 divUeberschrift.style.top = y + "px";
+
+                 divUeberschrift.style.fontWeight = "bold";
+
+                 var divUeberschriftText = document.createTextNode(htmlentities_decode(AntwortAr[(i * 3)]) + ": " + htmlentities_decode((AntwortAr[((i * 3) + 1)])));
+
+                 divUeberschrift.appendChild(divUeberschriftText);
+
+                 divAbschnitt.appendChild(divUeberschrift);
+
+                 ////////////////////
+                 //Kurzbeschreibung//
+                 ////////////////////
+
+                 y += abstand;
+
+                 var divKB = document.createElement("div");
+
+                 divKB.style.position = "absolute";
+                 divKB.style.top = y + "px";
+
+                 var divKBText = document.createTextNode(htmlentities_decode((AntwortAr[((i * 3) + 2)])) + "...");
+
+                 divKB.appendChild(divKBText);
+
+                 divAbschnitt.appendChild(divKB);
+
+                 y += abstand + 70;
+
+                 document.body.appendChild(divAbschnitt);
+         }
+</script>
+</body>
+</html>

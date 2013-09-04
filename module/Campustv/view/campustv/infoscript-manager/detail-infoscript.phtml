@@ -1,0 +1,54 @@
+<style type="text/css">
+    th, b1 {
+        background-color: yellowgreen;
+        border: 2px solid blue;
+        text-align: left;
+    }
+
+    td.b2 {
+        border: 1px solid blue;
+        text-align: left;
+    }
+
+    td.b3 {
+        border: 1px solid blue;
+        text-align: center;
+    }
+
+    tr.tr1{
+        border: 1px solid blue;
+        text-align: left;
+    }
+
+    tr.grey {
+        background-color: gainsboro;
+    }
+
+    #frame {
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    zoom: 0.60;
+    -moz-transform: scale(0.60);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.60);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.60);
+    -webkit-transform-origin: 0 0;
+
+}
+
+</style>
+
+<table>
+    <thead>
+        <?=  $this->partial($this->url($this->route) . '/partial/infoscript/header.phtml'); ?>
+    </thead>
+    <tbody>
+        <?= $this->partial($this->url($this->route).'/partial/infoscript/infoscript.phtml',array('infoscripte'=> array($infoscript->toArray())));?>
+    </tbody>
+</table>
+
+<p></p>
+
+<iframe scrolling="no" id="frame" src="<?= $infoscript->getUrl(); ?> "/>

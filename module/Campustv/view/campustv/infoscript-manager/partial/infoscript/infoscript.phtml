@@ -1,0 +1,32 @@
+<?php
+
+        $count = 0;
+
+        foreach ($this->infoscripte as $i) :
+            $id     = $this->escapeHtml($i['ID']);
+            $start  = $this->escapeHtml($i['STARTDATUM']);
+            $end    = $this->escapeHtml($i['ABLAUFDATUM']);
+            $edit   = $this->escapeHtml($this->url('campustv/infoscript-manager/default', array('action' => 'edit-infoscript', 'id' => $id)));
+            $delete = $this->escapeHtml($this->url('campustv/infoscript-manager/default', array('action' => 'delete-infoscript', 'id' => $id)));
+            $url    = $this->escapeHtml($i['URL']);
+
+            ++$count;
+    ?>
+
+    <?php if($count%2 == 1) : //ungerade zeilen weiß lassen?>
+        <tr class="tr1">
+    <?php else : //gerade zeilen mit grauem hintergrund belegen?>
+        <tr class="tr1 grey">
+    <?php endif; ?>
+
+        <td class="b2"><a href="<?= $this->url('campustv/infoscript-manager/default', array('action' => 'detail-infoscript', 'id' => $id))    ?>"> DETAILS</a></td>
+        <td class="b2">         <?= $id     ?></td>
+        <td class="b2">         <?= $start  ?></td>
+        <td class="b2">         <?= $end    ?></td>
+        <td class="b3"><a href="<?= $edit   ?>">                 <img src="/img/campustv/icons/edit-16.png"/>   </a> </td>
+        <td class="b3"><a href="<?= $delete ?>">                 <img src="/img/campustv/icons/delete-16.png"/> </a> </td>
+        <td class="b4"><a href="<?= $url    ?>" target="_blank"> <img src="/img/campustv/icons/url-16.png"/>  <?= $url ?>  </a> </td>
+    </tr>
+    <?php
+        endforeach;
+    ?>

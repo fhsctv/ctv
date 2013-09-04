@@ -1,0 +1,109 @@
+<?php $this->headTitle('Manager - Anzeigen');
+
+$route_default = $this->route;
+$route_show    = 'campustv/anzeige-manager/show-anzeige';
+
+
+?>
+
+<style type="text/css">
+    th, b1 {
+        background-color: yellowgreen;
+        border: 2px solid blue;
+        text-align: left;
+    }
+
+    td.b2 {
+        border: 1px solid blue;
+        text-align: left;
+    }
+
+    td.b3 {
+        border: 1px solid blue;
+        text-align: center;
+    }
+
+    tr.tr1{
+        border: 1px solid blue;
+        text-align: left;
+    }
+
+    tr.grey {
+        background-color: gainsboro;
+    }
+
+</style>
+
+<h1>CampusTV Manager Anzeigen</h1>
+
+<div style="background-color: #0F0; font-size: larger;">
+<?php
+foreach ($this->flashMessagesSuccess as $message){
+    echo $message . "<br/>";
+}?>
+</div>
+<div style="background-color: #F00; font-size: larger;">
+<?php
+foreach ($this->flashMessagesFail as $message){
+    echo $message . "<br/>";
+}?>
+</div>
+<div style="background-color: #FF0; font-size: larger;">
+<?php
+foreach ($this->flashMessagesInfo as $message){
+    echo $message . "<br/>";
+}?>
+</div>
+
+Display:
+<a href="<?= $this->url($route_default, array('action' => 'show-anzeige')) ?>">[alle]</a> &nbsp;&nbsp;&nbsp;
+<a href="<?= $this->url($route_show, array('display' => 1)) ?>">[1]</a> &nbsp;&nbsp;&nbsp;
+<a href="<?= $this->url($route_show, array('display' => 21)) ?>">[21]</a>&nbsp;&nbsp;&nbsp;
+<a href="<?= $this->url($route_show, array('display' => 41)) ?>">[41]</a>&nbsp;&nbsp;&nbsp;
+
+<!-- TODO dynamisch machen, wenn mehrere Positionen auftauchen sollten -->
+
+Aufgaben:
+<a href="<?= $this->url($route_default, array('action' => 'create-anzeige')) ?>"><img src="/img/campustv/icons/new-16.png"/></a>
+
+<h2>Aktive Anzeigen</h2>
+
+<table>
+    <thead>
+        <?= $this->partial($this->url($route_default) . '/partial/anzeige/header.phtml', array()); ?>
+    </thead>
+
+    <tbody>
+        <?= $this->partial($this->url($route_default) . '/partial/anzeige/anzeige.phtml', array('anzeigen' => $this->active)); ?>
+    </tbody>
+</table>
+
+
+
+
+<h2>Inaktive Anzeigen</h2>
+<table>
+    <thead>
+        <?= $this->partial($this->url($route_default) . '/partial/anzeige/header.phtml', array()); ?>
+    </thead>
+
+    <tbody>
+        <?= $this->partial($this->url($route_default) . '/partial/anzeige/anzeige.phtml', array('anzeigen' => $this->outdated)); ?>
+    </tbody>
+</table>
+
+
+
+
+
+
+<h2>Zukünftige Anzeigen</h2>
+<table>
+    <thead>
+<?= $this->partial($this->url($route_default) . '/partial/anzeige/header.phtml', array()); ?>
+    </thead>
+
+    <tbody>
+<?= $this->partial($this->url($route_default) . '/partial/anzeige/anzeige.phtml', array('anzeigen' => $this->future)); ?>
+    </tbody>
+</table>

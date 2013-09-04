@@ -1,0 +1,33 @@
+
+<?php $this->headTitle('Manager - Infoscript erstellen')?>
+
+<h1>CampusTV Manager Infoscript erstellen</h1>
+
+
+
+
+
+<?php
+
+use Campustv\Model\Entity\Infoscript as InfoscriptModel;
+
+$form = $this->form;
+$form->setAttribute('action', $this->url($this->route, array('action' => 'create-infoscript')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('ID'));
+?>
+
+
+
+<ul class="form-list">
+    <li><?= $this->partial($this->url($this->route).'/partial/formElement.phtml',array('formElement' => $form->get(InfoscriptModel::TBL_COL_BEGIN_DATE))); ?></li>
+    <li><?= $this->partial($this->url($this->route).'/partial/formElement.phtml',array('formElement' => $form->get(InfoscriptModel::TBL_COL_END_DATE)));   ?></li>
+    <li><?= $this->partial($this->url($this->route).'/partial/formElement.phtml',array('formElement' => $form->get(InfoscriptModel::TBL_COL_URL)));        ?></li>
+</ul>
+
+
+<?php
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag(); ?>

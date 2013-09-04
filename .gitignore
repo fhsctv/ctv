@@ -1,0 +1,4 @@
+composer.lock
+nbproject/
+config/autoload/local.php
+data/cache

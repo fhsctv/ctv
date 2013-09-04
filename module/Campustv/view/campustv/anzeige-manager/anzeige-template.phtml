@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Campus-TV</title>
+        <link href="/anzeigen.css" rel="stylesheet" type="text/css">
+            <script src="/datum.js" type="text/javascript"></script>
+    </head>
+    <body style="background: #FFF">
+        <div class="bg">
+
+            <div class="header">
+
+                <div id="headline">CampusTV - Stellenmarkt</div>
+
+                <div id="futlogo"></div>
+
+                <div id="datum" align="left">
+                    <script type="text/javascript">
+                        document.write(getAktuellesDatum());
+                    </script>
+                </div>
+
+                <div id="ausgabe" align="right"><br/></div>
+
+            </div>
+
+            <div class="body">
+                <div class="stelle"> <?= $this->content->getJobTitle() ?> </div>
+
+                <div class="logo"><img src="/getBLOB.php?PARID=2114" width="200px" /></div>
+
+                <div class="adresse">
+                    <?= $this->content->getEnterpriseName() ?><br/>
+                    <?= $this->content->getEnterpriseContact()['street'] ?> <br/>
+                    <?= $this->content->getEnterpriseContact()['zip'] ?>
+                    <?= $this->content->getEnterpriseContact()['town'] ?>
+                </div>
+
+                <div class="profil">Ihr Profil:</div>
+
+                <div class="bieten">Wir bieten:</div>
+
+                <div style="clear:both" />
+
+
+                <?php
+
+                    $anzeigeModel = $this->content;
+
+                    $requirements = function() use ($anzeigeModel) {
+
+                        $result = '';
+
+                        foreach($anzeigeModel->getRequirements() as $requirement){
+                            $result .= '<li>' . $requirement . '</li>';
+                        }
+
+                        return $result;
+
+                    };
+
+                    $descriptions = function() use ($anzeigeModel){
+
+                        $result = '';
+
+                        foreach($anzeigeModel->getDescription() as $description){
+                            $result .= '<li>' . $description . '</li>';
+                        }
+
+                        return $result;
+
+                    };
+                ?>
+
+
+
+                <div class="profil2">
+                    <ul>
+                        <?= $requirements(); ?>
+                    </ul>
+                </div>
+
+                <div class="bieten2">
+                    <ul>
+                        <?= $descriptions(); ?>
+                    </ul>
+                </div>
+            </div>
+
+
+    </body>
+</html>
+

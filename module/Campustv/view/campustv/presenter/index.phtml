@@ -1,0 +1,15 @@
+<h1>CampusTV Presenter</h1>
+
+<?php // echo $this->escapeHtml($content) . "<br/>" ;?>
+
+<ul>
+
+<?php
+foreach ($rss as $item) {
+            echo '<li style="font-size:2em; line-height: 1.5;">'
+                 . $item->getTitle()
+                 . '</li>';
+        }
+
+?>
+</ul>

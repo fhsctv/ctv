@@ -1,0 +1,28 @@
+<h2>CampusTV Delete Infoscript</h2>
+
+
+Sind Sie sicher, dass Sie das Infoscript <?= $this->infoscript->getId() ?> mit der Adresse <?php echo $this->infoscript->getUrl()?> löschen möchten?
+
+<p> </p>
+<?php
+
+$form = $this->form;
+$form->setAttribute('action', $this->url($this->route, array('action' => 'delete-infoscript', 'id' => $id)));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
+
+
+?>
+
+<input type="hidden" name="id" value="<?= $this->infoscript->getId(); ?>" />
+<input type="submit" name="del" value="ja" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="submit" name="del" value="nein" />
+
+<?php
+
+echo $this->form()->closeTag();
+
+?>

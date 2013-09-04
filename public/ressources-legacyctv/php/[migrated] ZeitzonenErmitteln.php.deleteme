@@ -1,0 +1,33 @@
+<?php
+         //include_once('../config/config.php');
+	include_once('config.php');
+
+
+
+         if (!$conn = ocilogon($Benutzername,$Passwort,$Host."/".$Datenbank))
+         {
+
+             echo "Verbindung fehlgeschlagen";
+         }
+         else
+         {
+                 $sql="SELECT Zeitzonen.Von AS VON FROM Zeitzonen INNER JOIN Position ON Zeitzonen.Standort_ID=Position.Standort_ID INNER JOIN Standort ON Position.Standort_ID=Standort.ID AND Position.ID=".$_POST['Positions_ID']." ORDER BY Von ASC";
+                 //echo $sql;
+
+                 if (!$result = ociparse($conn,$sql))
+                 {
+                         echo "Error in parse. Error was :", ora_error($curs);
+                 }
+                 else
+                 {
+                         ociexecute($result);
+
+                         while (ocifetch($result))
+                         {
+                                 echo ociresult($result,"VON").";";
+                         }
+                 }
+
+                 ocilogoff($conn);
+         }
+?>

@@ -1,0 +1,10 @@
+<?php
+
+include_once('AktuelleAnzeigen.php');
+
+$AktuelleAnzeigen = new AktuelleAnzeigen($_POST['Positions_ID']);
+
+//Tabelle Aktuelle_Anzeigen bereinigen
+$AktuelleAnzeigen->delete();
+
+?>

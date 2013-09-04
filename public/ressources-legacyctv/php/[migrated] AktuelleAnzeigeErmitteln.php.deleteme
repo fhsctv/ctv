@@ -1,0 +1,7 @@
+<?php
+	include_once('AktuelleAnzeigen.php');
+
+	$AktuelleAnzeigen = new AktuelleAnzeigen($_POST['Positions_ID']);
+
+	echo $AktuelleAnzeigen->aktuelleAnzeigeErmitteln($_POST["Anzahl_Wiederholungen"]);
+?>

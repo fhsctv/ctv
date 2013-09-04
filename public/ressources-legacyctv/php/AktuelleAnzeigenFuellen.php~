@@ -1,0 +1,34 @@
+<?php
+	include_once('DBConnect.php');
+	include_once('AktuelleAnzeigen.php');
+
+	$AktuelleAnzeigen = new AktuelleAnzeigen($_POST['Positions_ID']);
+
+	//Tabelle Aktuelle_Anzeigen bereinigen
+	$AktuelleAnzeigen->delete();
+
+	//aktuelle Zeitzone ermitteln
+        // $AktuelleAnzeigen->aktuelleZeitzoneErmitteln();
+
+	//aktuelle Anzeigen ermitteln
+        $AktuelleAnzeigen->aktuelleAnzeigenErmitteln();
+
+
+	//aktuelle Anzeigen in Feld schreiben
+        $AktuelleAnzeigen->aktuelleAnzeigenInFeld();
+
+	//Nachrichten Portale ermitteln
+	$AktuelleAnzeigen->aktuelleInfoscripteErmitteln();
+
+	//News einf�gen
+	$AktuelleAnzeigen->aktuelleInfoscripteInFeld();
+
+	//Anzeigen Sortieren
+	$AktuelleAnzeigen->AnzeigenSortieren();
+
+	//aktuelle Anzeigen in Datenbank schreiben
+	$AktuelleAnzeigen->insert();
+
+	//Mail für Testzwecke verschicken
+	//$AktuelleAnzeigen->TestMail();
+?>

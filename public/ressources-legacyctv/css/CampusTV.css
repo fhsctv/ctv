@@ -1,0 +1,79 @@
+@CHARSET "UTF-8";
+#Uhr {
+    position: absolute;
+    left: 925px;
+    top: 660px;
+    font-size: 47px;
+    font-family: arial, sans-serif;
+    font-weight: bold;
+    color: #FFFFFF;
+    
+}
+
+#FHS_Logo
+{
+	width				: 228px;
+    height				: 50px;
+
+    position			: absolute;
+    left				: 1040px;
+    top					: 53px;
+    z-index:            : -10;
+}
+
+#Futhuer_Logo
+{
+    width				: 204px;
+    height				: 57px;
+
+    position			: absolute;
+    left				: 1076px;
+    top					: 655px;
+    
+    padding-top			: 8px;
+    
+    background-color	: #333333;
+}
+
+#suchid
+{
+	width				: 1076px; 
+	height				: 45px;
+	
+	position			: absolute; 
+	top				    : 655px; 
+	left				: 0px;
+	
+	margin				: 0px;
+	padding 			: 0px;
+        padding-top                     : 20px;
+	
+	text-align			: center;
+	
+	background-color                : #333333;
+	
+	color				: #FFFFFF;  
+	font-size			: 25px;
+	font-weight			: bold;
+	font-family			: arial,helvetica,sans-serif;
+}
+
+.div_iframe
+{
+	width				: 1280px; 
+	height				: 720px;
+	
+	position			: absolute; 
+	top					: 0px; 
+	left				: 0px;
+    z-index             : -10;
+}
+
+#AnzeigeFrame
+{
+	width				: 1280px;
+	height				: 720px;
+
+	text-align			: center;
+	overflow			: hidden;
+}

@@ -1,0 +1,85 @@
+<?php $this->headTitle('Manager - Infoscripte'); ?>
+
+<style type="text/css">
+    th, b1 {
+        background-color: yellowgreen;
+        border: 2px solid blue;
+        text-align: left;
+    }
+
+    td.b2 {
+        border: 1px solid blue;
+        text-align: left;
+    }
+
+    td.b3 {
+        border: 1px solid blue;
+        text-align: center;
+    }
+
+    tr.tr1{
+        border: 1px solid blue;
+        text-align: left;
+    }
+
+    tr.grey {
+        background-color: gainsboro;
+    }
+
+</style>
+
+
+<h1>CampusTV Manager Infoscripte</h1>
+
+<div style="background-color: #0F0; font-size: larger;">
+<?php
+foreach ($this->flashMessagesSuccess as $message){
+    echo $message . "<br/>";
+}?>
+</div>
+<div style="background-color: #F00; font-size: larger;">
+<?php
+foreach ($this->flashMessagesFail as $message){
+    echo $message . "<br/>";
+}?>
+</div>
+<div style="background-color: #FF0; font-size: larger;">
+<?php
+foreach ($this->flashMessagesInfo as $message){
+    echo $message . "<br/>";
+}?>
+</div>
+
+Aufgaben: <a href="<?php echo $this->escapeHtml($this->url($this->route, array('action' => 'create-infoscript'))); ?>"><img src="/img/campustv/icons/new-16.png"/></a>
+
+
+<h2>Aktive Infoscripte</h2>
+<table>
+    <thead>
+        <?=  $this->partial($this->url($this->route).'/partial/infoscript/header.phtml',array()); ?>
+    </thead>
+    <tbody>
+        <?= $this->partial($this->url($this->route).'/partial/infoscript/infoscript.phtml',array('infoscripte'=> $this->active));?>
+    </tbody>
+</table>
+
+
+<h2>Abgelaufene Infoscripte</h2>
+<table>
+    <thead>
+        <?=  $this->partial($this->url($this->route).'/partial/infoscript/header.phtml',array()); ?>
+    </thead>
+    <tbody>
+        <?=  $this->partial($this->url($this->route).'/partial/infoscript/infoscript.phtml',array('infoscripte'=> $this->outdated)); ?>
+    </tbody>
+</table>
+
+<h2>Zukünftige Infoscripte</h2>
+<table>
+    <thead>
+        <?=  $this->partial($this->url($this->route).'/partial/infoscript/header.phtml',array()); ?>
+    </thead>
+    <tbody>
+        <?=  $this->partial($this->url($this->route).'/partial/infoscript/infoscript.phtml',array('infoscripte'=> $this->future)); ?>
+    </tbody>
+</table>

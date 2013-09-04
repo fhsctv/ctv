@@ -1,0 +1,47 @@
+<html>
+
+    <head>
+        <!--this is for forwarding to the next slide  -->
+        <?php echo $this->headMetaForward; ?>
+    </head>
+
+
+    <body>
+        <iframe scrolling="no" style="border-width:1px;
+                border-style:solid;
+                border-color:blue;
+                width: 1280px;
+                height:720px;
+                overflow: hidden;"
+                src="<?= $this->escapeHtml($this->slide) ?>">
+    </body>
+</html>
+
+<!-- ---------------------------------------------------------------------------
+
+    NOTICE: THIS VIEW SCRIPT DOES NOT USE A LAYOUT TEMPLATE
+            THAT IS WHY IT IS NEEDED TO CODE THE WHOLE HTML STRUCTURE:
+            <html>
+                <head>
+                </head>
+                <body>
+                </body>
+            </html>
+
+
+    ----------------------------------------------------------------------------
+    AVAILABLE VARIABLES FOR THIS VIEW SCRIPT:
+    ----------------------------------------------------------------------------
+
+    VARIABLE      $this->slide
+    TYPE          string
+    DESCRIPTION   contains the url of the slide to be shown
+
+    ----------------------------------------------------------------------------
+
+    VARIABLE      $this->headMetaForward
+    TYPE          string
+    DESCRIPTION   contains the html meta tag to forward the site to the next
+                  slide
+
+---------------------------------------------------------------------------- -->

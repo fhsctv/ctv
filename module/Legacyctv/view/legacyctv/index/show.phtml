@@ -1,0 +1,41 @@
+<?php $PATH = '/ressources-legacyctv' ?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+    <head>
+        <title>CampusTV</title>
+        <link href="<?= $PATH ?>/css/CampusTV.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="<?= $PATH ?>/js/CampusTV.js"></script>
+    </head>
+    <body>
+
+
+
+        <div class="div_iframe">
+            <iframe id="AnzeigeFrame" marginwidth="0px" marginheight="0px" scrolling="no"  frameborder="0">
+            </iframe>
+        </div>
+
+        <div id="Futhuer_Logo"><img src="<?= $PATH ?>/img/FuThuer.png"></div>
+
+
+
+
+        <div id="FHS_Logo"><img src="<?= $PATH ?>/img/FHS.png"></div>
+
+        <div id="Uhr">
+            <script type="text/javascript"> uhr();</script>
+        </div>
+
+        <div id="suchid"></div>
+
+        <script type="text/javascript">
+            initIntervall();
+            ZeitzonenErmitteln();
+            setTimeout("ZeitzoneVorhanden()", 1);
+            //wenn gestartet, dann soll aktuelle_anzeigen gefüllt werden
+            AktuelleAnzeigenfuellen();
+        </script>
+    </body>
+</html>
+
