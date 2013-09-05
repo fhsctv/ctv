@@ -5,7 +5,7 @@ namespace Campustv\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-use Campustv\Form\DeleteForm;
+use Campustv\Form\Form\DeleteForm;
 
 class InfoscriptManagerController extends AbstractActionController {
 

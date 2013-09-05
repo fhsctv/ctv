@@ -1,6 +1,6 @@
 <?php
 
-namespace Campustv\Form;
+namespace Campustv\Form\Form;
 
 use Campustv\Model\Entity\Infoscript;
 

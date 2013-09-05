@@ -2,10 +2,10 @@
 
 namespace Campustv\Service\Service;
 
-use Campustv\Model             as Model;
-use Campustv\Model\Entity      as Entity;
+use Campustv\Model                    as Model;
+use Campustv\Model\Entity             as Entity;
 
-use Campustv\Form\AnzeigeForm          as AnzeigeForm;
+use Campustv\Form\Form\AnzeigeForm    as AnzeigeForm;
 
 use Campustv\Service\IService;
 

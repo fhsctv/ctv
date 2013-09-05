@@ -13,7 +13,7 @@ use Zend\InputFilter\InputFilterInterface;
 use Campustv\Service\IService;
 use Campustv\Model\IEntity                as IEntity;
 use Campustv\Model\Entity\Infoscript      as InfoscriptModel;
-use Campustv\Form\InfoscriptForm          as InfoscriptForm;
+use Campustv\Form\Form\InfoscriptForm     as InfoscriptForm;
 
 final class Infoscript extends AbstractService implements InputFilterAwareInterface, IService {
 

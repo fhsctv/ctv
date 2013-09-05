@@ -4,8 +4,7 @@ namespace Campustv\Service\Service;
 
 use Campustv\Service\IService;
 use Campustv\Model\IEntity         as IEntity;
-use Campustv\Model\Entity\Url              as UrlModel;
-use Campustv\Form\UrlForm                 as UrlForm;
+use Campustv\Model\Entity\Url      as UrlModel;
 
 class Url implements \Zend\ServiceManager\FactoryInterface, IService{
 
@@ -17,9 +16,6 @@ class Url implements \Zend\ServiceManager\FactoryInterface, IService{
         return $urlModel->setId($id)->setUrl($url);
     }
 
-    public function getUrlForm(){
-        return new UrlForm();
-    }
 
     public function fetchAll(){
         return $this->getUrlTable()->fetchAll();
