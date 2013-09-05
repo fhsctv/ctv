@@ -7,8 +7,6 @@ use Campustv\Service\Cache\Infoscript as InfoscriptServiceCache;
 
 class Infoscript implements \Zend\ServiceManager\FactoryInterface {
 
-    protected $enableCache = false;
-
     public function __construct($enableCache = false) {
         $this->enableCache = $enableCache;
     }
@@ -17,9 +15,11 @@ class Infoscript implements \Zend\ServiceManager\FactoryInterface {
 
         $infoscriptService = new InfoscriptService();
         $infoscriptService->setTable($sm->get('Campustv\Model\Table\Infoscript'));
-        $infoscriptService->setHydrator($sm->get('hydrator'));
+        $infoscriptService->setFormFactory($sm->get('Campustv\Form\Factory\Infoscript'));
 
-        if (!$this->enableCache) {
+        $cache = $sm->get('config')['constants']['Campustv\ServiceCaching'];
+
+        if (!$cache) {
             return $infoscriptService;
         }
 

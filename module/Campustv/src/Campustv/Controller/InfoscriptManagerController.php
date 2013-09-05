@@ -42,6 +42,8 @@ class InfoscriptManagerController extends AbstractActionController {
         $content = __METHOD__;
 
 
+        
+
         $active   = $this->getService('Infoscript')->fetchAllActive();
         $outdated = $this->getService('Infoscript')->fetchAllOutdated();
         $future   = $this->getService('Infoscript')->fetchAllFuture();

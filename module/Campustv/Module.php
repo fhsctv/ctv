@@ -3,19 +3,22 @@
 namespace Campustv;
 
 
-use Campustv\Model\Entity    as Entity;
-use Campustv\Model\Table     as Table;
-use Campustv\Service\Factory as ServiceFactory;
-
-
-use Campustv\Service\Service\Url          as UrlService;
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
 
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
+use Campustv\Model\Entity    as Entity;
+use Campustv\Model\Table     as Table;
+use Campustv\Service\Factory as ServiceFactory;
 
-class Module {
+use Campustv\Service\Service\Url          as UrlService;
+
+
+class Module implements AutoloaderProviderInterface, ConfigProviderInterface, ServiceProviderInterface {
 
     const MODEL_CACHING = false;
 
@@ -51,11 +54,18 @@ class Module {
 
         return array(
             'factories' => array_merge(
-                $this->getGatewayFactories(),
-                $this->getTableFactories(),
-                $this->getServiceFactories()
-                ,array('hydrator' => function(){return new \Zend\Stdlib\Hydrator\ClassMethods; })
-            )
+                 $this->getGatewayFactories()
+                ,$this->getTableFactories()
+                ,$this->getServiceFactories()
+                ,array('Campustv\Form\Factory\Infoscript' => '\Campustv\Form\Factory\Infoscript')
+            ),
+            'invokables' => array(
+                'Campustv\InputFilter\Infoscript' => '\Campustv\Form\InputFilter\Infoscript',
+                'hydrator' => '\Zend\Stdlib\Hydrator\ClassMethods'
+             ),
+            'shared' => array(
+                'Campustv\Form\Factory\Infoscript' => false
+            ),
         );
     }
 
@@ -151,10 +161,11 @@ class Module {
     private function getServiceFactories(){
 
         return array(
-                'Campustv\Service\Url'                       => new UrlService(self::MODEL_CACHING),
-                'Campustv\Service\Kunde'                     => new ServiceFactory\Kunde(self::MODEL_CACHING),
-                'Campustv\Service\Anzeige'                   => new ServiceFactory\Anzeige(self::MODEL_CACHING),
-                'Campustv\Service\Infoscript'                => new ServiceFactory\Infoscript(self::MODEL_CACHING),
+                'Campustv\Service\Url'                       => '\Campustv\Service\Service\Url',
+
+                'Campustv\Service\Kunde'                     => '\Campustv\Service\Factory\Kunde',
+                'Campustv\Service\Anzeige'                   => '\Campustv\Service\Factory\Anzeige',
+                'Campustv\Service\Infoscript'                => '\Campustv\Service\Factory\Infoscript',
 
 //TODO does this has any advantage? how to give this parameters?
 //                'Campustv\Service\Kunde'                     => 'Campustv\Service\Factory\Kunde',

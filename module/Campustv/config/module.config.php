@@ -43,4 +43,5 @@ return array(
     'service_manager' => $service_manager,
     'translator'      => $translator,
     'view_manager'    => $view_manager,
+    'constants'       => array('Campustv\ServiceCaching' => false),
 );

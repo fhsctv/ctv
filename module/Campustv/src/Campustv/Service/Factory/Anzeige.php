@@ -7,8 +7,6 @@ use Campustv\Service\Cache\Anzeige   as AnzeigeServiceCache;
 
 class Anzeige implements \Zend\ServiceManager\FactoryInterface {
 
-    protected $enableCache = false;
-
     public function __construct($enableCache = false) {
         $this->enableCache = $enableCache;
     }
@@ -43,7 +41,9 @@ class Anzeige implements \Zend\ServiceManager\FactoryInterface {
         $anzeigeService->setCustomers($array_transform($sm->get('Campustv\Service\Kunde'),'PAR_ID', 'PAR_NAME'));
 
 
-        if(!$this->enableCache){
+        $cache = $sm->get('config')['constants']['Campustv\ServiceCaching'];
+
+        if (!$cache) {
             return $anzeigeService;
         }
 

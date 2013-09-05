@@ -18,7 +18,10 @@ class Kunde implements \Zend\ServiceManager\FactoryInterface {
         $kundeService = new KundeService();
         $kundeService->setTable($sm->get('Campustv\Model\Table\Kunde'));
 
-        if(!$this->enableCache){
+
+        $cache = $sm->get('config')['constants']['Campustv\ServiceCaching'];
+
+        if (!$cache) {
             return $kundeService;
         }
 
