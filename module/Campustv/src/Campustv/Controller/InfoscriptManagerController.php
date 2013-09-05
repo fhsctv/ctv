@@ -84,7 +84,6 @@ class InfoscriptManagerController extends AbstractActionController {
             return array('form' => $form, 'route' => self::ROUTE_DEFAULT,);
         }
 
-
         if($this->createInfoscriptUsingFormData($form, self::FLASHMESSENGER_CREATE_SUCCESS)){
             return $this->redirect()->toRoute(self::ROUTE_DEFAULT,
                     array('action' => 'show-infoscript'));
@@ -105,6 +104,8 @@ class InfoscriptManagerController extends AbstractActionController {
         }
 
         $infoscript = $this->getService('Infoscript')->get($id);
+
+
         $form       = $this->getService('Infoscript')->getForm($infoscript);
 
         if(!$this->getRequest()->isPost()){
@@ -161,6 +162,8 @@ class InfoscriptManagerController extends AbstractActionController {
 
         $form->setData($this->getRequest()->getPost());
 
+//        var_dump($this->getRequest()->getPost(), $form);
+
         if($form->isValid()){
 
             $data = $form->getData(); //$form->getData() returns infoscriptModel on edit of an infoscript, because it used bind() method of form
@@ -171,7 +174,10 @@ class InfoscriptManagerController extends AbstractActionController {
             }
 
             $infoscript = $this->getService('Infoscript')->createModel();
-            $infoscript->exchangeArray($form->getData()); //$form->getData() returns array on creation of new infoscript
+            //$infoscript->exchangeArray($form->getData()); //$form->getData() returns array on creation of new infoscript
+            $this->getServiceLocator()->get('hydrator')->hydrate($form->getData(), $infoscript);
+
+            var_dump($infoscript);
 
             $this->getService('Infoscript')->save($infoscript);
 

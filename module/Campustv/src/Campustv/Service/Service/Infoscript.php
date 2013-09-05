@@ -11,13 +11,27 @@ use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 
 use Campustv\Service\IService;
-use Campustv\Model\IEntity         as IEntity;
-use Campustv\Model\Entity\Infoscript       as InfoscriptModel;
+use Campustv\Model\IEntity                as IEntity;
+use Campustv\Model\Entity\Infoscript      as InfoscriptModel;
 use Campustv\Form\InfoscriptForm          as InfoscriptForm;
 
 final class Infoscript extends AbstractService implements InputFilterAwareInterface, IService {
 
     protected $inputFilter;
+    protected $hydrator;
+
+
+    public function getHydrator()
+    {
+        return $this->hydrator;
+    }
+
+    public function setHydrator($hydrator)
+    {
+        $this->hydrator = $hydrator;
+        return $this;
+    }
+
 
 
     //--------------------------------------------------------------------------
@@ -38,19 +52,22 @@ final class Infoscript extends AbstractService implements InputFilterAwareInterf
 
     public function getForm(IEntity $infoscriptModel = null){
 
-        $editForm = function(IEntity $infoscriptModel){
+        $editForm = function(IEntity $infoscriptModel) {
 
             $form = new InfoscriptForm();
+            $form->setHydrator($this->getHydrator());
             $form->bind($infoscriptModel);
+
             $form->get('submit')->setValue('Änderungen speichern');
             $form->setInputFilter($this->getInputFilter());
 
             return $form;
         };
 
-        $newForm  = function(){
+        $newForm  = function() {
 
             $form = new InfoscriptForm();
+            $form->setHydrator($this->getHydrator());
             $form->get('submit')->setValue('Infoscript speichern');
             $form->setInputFilter($this->getInputFilter());
 
@@ -82,7 +99,7 @@ final class Infoscript extends AbstractService implements InputFilterAwareInterf
 
         // <editor-fold defaultstate="collapsed" desc="Inputs">
         $idInput = $factory->createInput(array(
-            'name' => InfoscriptModel::TBL_COL_ID,
+            'name' => strtolower(InfoscriptModel::TBL_COL_ID),
             'required' => true,
             'filters' => array(
                 array('name' => 'Int'),
@@ -90,7 +107,7 @@ final class Infoscript extends AbstractService implements InputFilterAwareInterf
         ));
 
         $startDatumInput = $factory->createInput(array(
-            'name' => InfoscriptModel::TBL_COL_BEGIN_DATE,
+            'name' => strtolower(InfoscriptModel::TBL_COL_BEGIN_DATE),
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),   //remove unwanted html
@@ -115,7 +132,7 @@ final class Infoscript extends AbstractService implements InputFilterAwareInterf
         ));
 
         $ablaufDatumInput = $factory->createInput(array(
-            'name' => InfoscriptModel::TBL_COL_END_DATE,
+            'name' => strtolower(InfoscriptModel::TBL_COL_END_DATE),
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),
@@ -140,7 +157,7 @@ final class Infoscript extends AbstractService implements InputFilterAwareInterf
         ));
 
         $urlInput = $factory->createInput(array(
-            'name' => InfoscriptModel::TBL_COL_URL,
+            'name' => strtolower(InfoscriptModel::TBL_COL_URL),
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),
@@ -182,19 +199,19 @@ final class Infoscript extends AbstractService implements InputFilterAwareInterf
 
     public function fetchAllActive(){
 
-        return $this->getTable()->fetchAllActive()->toArray();
+        return $this->getTable()->fetchAllActive();
     }
 
 
     public function fetchAllOutdated(){
 
-        return $this->getTable()->fetchAllOutdated()->toArray();
+        return $this->getTable()->fetchAllOutdated();
     }
 
 
     public function fetchAllFuture(){
 
-        return $this->getTable()->fetchAllFuture()->toArray();
+        return $this->getTable()->fetchAllFuture();
     }
 
 
@@ -207,7 +224,7 @@ final class Infoscript extends AbstractService implements InputFilterAwareInterf
 
     public function fetchAll(){
 
-        return $this->getTable()->fetchAll()->toArray();
+        return $this->getTable()->fetchAll();
     }
 
 

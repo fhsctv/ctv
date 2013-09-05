@@ -15,24 +15,24 @@ class InfoscriptForm extends Form {
         $this->setAttribute('method', 'post');
 
         $this->add(array(
-                'name' => Infoscript::TBL_COL_ID,
+                'name' => strtolower(Infoscript::TBL_COL_ID),
                 'attributes' => array('type' => 'hidden',),
             )
         );
         $this->add(array(
-                'name'       => Infoscript::TBL_COL_BEGIN_DATE,
+                'name'       => strtolower(Infoscript::TBL_COL_BEGIN_DATE),
                 'attributes' => array('type'  => 'text','value' => date('d.m.Y'),),
                 'options'    => array('label' => 'Startdatum'),
             )
         );
         $this->add(array(
-                'name' => Infoscript::TBL_COL_END_DATE,
+                'name' => strtolower(Infoscript::TBL_COL_END_DATE),
                 'attributes' => array('type'  => 'text','value' => date('d.m.Y'),),
                 'options'    => array('label' => 'Ablaufdatum',),
             )
         );
         $this->add(array(
-                'name' => Infoscript::TBL_COL_URL,
+                'name' => strtolower(Infoscript::TBL_COL_URL),
                 'attributes' => array('type'  => 'url','value'=>"http://"),
                 'options'    => array('label' => 'Url'),
             )

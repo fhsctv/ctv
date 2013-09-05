@@ -53,19 +53,19 @@ class Infoscript implements IEntity {
     }
 
 
-    public function exchangeArray(array $data) {
+//    public function exchangeArray(array $data) {
+//
+//        $this->id          = (isset($data[self::TBL_COL_ID]))          ? (int) $data[self::TBL_COL_ID]    : null;
+//        $this->url         = (isset($data[self::TBL_COL_URL]))         ? $data[self::TBL_COL_URL]         : null;
+//        $this->startdatum  = (isset($data[self::TBL_COL_BEGIN_DATE]))  ? $data[self::TBL_COL_BEGIN_DATE]  : null;
+//        $this->ablaufdatum = (isset($data[self::TBL_COL_END_DATE]))    ? $data[self::TBL_COL_END_DATE]    : null;
+//
+//        return $this;
+//    }
 
-        $this->id          = (isset($data[self::TBL_COL_ID]))          ? (int) $data[self::TBL_COL_ID]    : null;
-        $this->url         = (isset($data[self::TBL_COL_URL]))         ? $data[self::TBL_COL_URL]         : null;
-        $this->startdatum  = (isset($data[self::TBL_COL_BEGIN_DATE]))  ? $data[self::TBL_COL_BEGIN_DATE]  : null;
-        $this->ablaufdatum = (isset($data[self::TBL_COL_END_DATE]))    ? $data[self::TBL_COL_END_DATE]    : null;
-
-        return $this;
-    }
-
-    public function getArrayCopy(){
-        return $this->toArray();
-    }
+//    public function getArrayCopy(){
+//        return $this->toArray();
+//    }
 
     public function toArray(){
         return array(

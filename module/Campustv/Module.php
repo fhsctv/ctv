@@ -11,6 +11,7 @@ use Campustv\Service\Factory as ServiceFactory;
 use Campustv\Service\Service\Url          as UrlService;
 
 use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
 
@@ -53,7 +54,7 @@ class Module {
                 $this->getGatewayFactories(),
                 $this->getTableFactories(),
                 $this->getServiceFactories()
-//                ,array('hydrator' => function(){return new \Zend\Stdlib\Hydrator\ClassMethods; })
+                ,array('hydrator' => function(){return new \Zend\Stdlib\Hydrator\ClassMethods; })
             )
         );
     }
@@ -98,9 +99,9 @@ class Module {
         };
         $infoscriptTableGateway = function($sm) {
             $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-//            $resultSetPrototype = new HydratingResultSet($sm->get('hydrator'), new Entity\Infoscript());
-            $resultSetPrototype = new ResultSet();
-            $resultSetPrototype->setArrayObjectPrototype(new Entity\Infoscript());
+            $resultSetPrototype = new HydratingResultSet($sm->get('hydrator'), new Entity\Infoscript());
+//            $resultSetPrototype = new ResultSet();
+//            $resultSetPrototype->setArrayObjectPrototype(new Entity\Infoscript());
             return new TableGateway('NACHRICHTEN_PORTALE', $dbAdapter, null, $resultSetPrototype);
         };
 

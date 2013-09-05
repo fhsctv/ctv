@@ -1,3 +1,12 @@
+<?php
+    $infoscript= array();
+    $infoscript['id'] = $this->infoscript->getId();
+    $infoscript['startdatum'] = $this->infoscript->getStartDatum();
+    $infoscript['ablaufdatum'] = $this->infoscript->getAblaufDatum();
+    $infoscript['url'] = $this->infoscript->getUrl();
+?>
+
+
 <style type="text/css">
     th, b1 {
         background-color: yellowgreen;
@@ -45,10 +54,10 @@
         <?=  $this->partial($this->url($this->route) . '/partial/infoscript/header.phtml'); ?>
     </thead>
     <tbody>
-        <?= $this->partial($this->url($this->route).'/partial/infoscript/infoscript.phtml',array('infoscripte'=> array($infoscript->toArray())));?>
+        <?= $this->partial($this->url($this->route).'/partial/infoscript/infoscript.phtml',$infoscript);?>
     </tbody>
 </table>
 
 <p></p>
 
-<iframe scrolling="no" id="frame" src="<?= $infoscript->getUrl(); ?> "/>
+<iframe scrolling="no" id="frame" src="<?= $this->infoscript->getUrl(); ?> "/>

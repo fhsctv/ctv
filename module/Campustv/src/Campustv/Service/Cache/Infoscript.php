@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @todo Change caching service so that it can interact with objects or at least with HydratingResultSet.
+ * Maybe it is possible to cache Objects.
+ */
+
 namespace Campustv\Service\Cache;
 
 /**
@@ -76,7 +81,7 @@ class Infoscript extends AbstractServiceCache implements InputFilterAwareInterfa
         };
 
 
-        return array_filter($this->fetchAll(), $filter);
+        return array_filter($this->fetchAll()->toArray(), $filter);
 
     }
 
@@ -97,7 +102,7 @@ class Infoscript extends AbstractServiceCache implements InputFilterAwareInterfa
 
         };
 
-        return array_filter($this->fetchAll(), $filter);
+        return array_filter($this->fetchAll()->toArray(), $filter);
 
     }
 
@@ -117,7 +122,7 @@ class Infoscript extends AbstractServiceCache implements InputFilterAwareInterfa
             return (strtotime($infoscript['STARTDATUM']) > strtotime($today));
         };
 
-        return array_filter($this->fetchAll(), $filter);
+        return array_filter($this->fetchAll()->toArray(), $filter);
 
     }
 
@@ -131,16 +136,27 @@ class Infoscript extends AbstractServiceCache implements InputFilterAwareInterfa
 
     public function fetchAll() {
 
+
+        $hydrateAll = function($resultArray) {
+            $hydratingResultSet = new \Zend\Db\ResultSet\HydratingResultSet();
+            $hydratingResultSet->setHydrator($this->getService()->getHydrator());
+            $hydratingResultSet->setObjectPrototype($this->createModel());
+            $hydratingResultSet->initialize($resultArray);
+
+            return $hydratingResultSet;
+        };
+
+
         $cacheKey = 'infoscript' . '_all';
 
         if($this->getCache()->hasItem($cacheKey)){
-            return $this->getCache()->getItem($cacheKey);
+            return $hydrateAll($this->getCache()->getItem($cacheKey));
         }
 
-        $resultArray = $this->getService()->fetchAll();
-        $this->getCache()->setItem($cacheKey, $resultArray);
+        $resultSet = $this->getService()->fetchAll();
+        $this->getCache()->setItem($cacheKey, $resultSet->toArray());
 
-        return $resultArray;
+        return $resultSet;
     }
 
 

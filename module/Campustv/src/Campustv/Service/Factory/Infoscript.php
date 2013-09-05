@@ -17,6 +17,7 @@ class Infoscript implements \Zend\ServiceManager\FactoryInterface {
 
         $infoscriptService = new InfoscriptService();
         $infoscriptService->setTable($sm->get('Campustv\Model\Table\Infoscript'));
+        $infoscriptService->setHydrator($sm->get('hydrator'));
 
         if (!$this->enableCache) {
             return $infoscriptService;
