@@ -46,15 +46,14 @@ class PresenterController extends AbstractActionController {
         //"infoscripte" is shown on all displays
         $infoscripte = $this->getService('Infoscript')->fetchAllActive();
 
-        $slides      = $this->mergeSlides($anzeigen, $infoscripte);
+        $slides      = $this->mergeSlides($anzeigen, $infoscripte->toArray());
 
         $id          = $this->getValidId($slides, $this->params(self::PARAM_ID,0));
 
 
-        //TODO find a way to use $this->redirect()->toRoute(); with a delay function (php sleep() function)
         $viewModel   = new ViewModel(
                 array(
-                      'slide'          => $slides[$id]['URL'],
+                      'slide'          => $slides[$id]['url'],
                       'headMetaForward' => $this->getHeadMetaForwardingString(
                                             $this->getForwardingUrl($slides, $id)
                                            )
@@ -97,7 +96,7 @@ class PresenterController extends AbstractActionController {
             return $this->getValidId($slides, 0);
         }
 
-        if (false === FuthuerUrlCheck::checkUrl($slides[$id]['URL']))
+        if (false === FuthuerUrlCheck::checkUrl($slides[$id]['url']))
             return $this->getValidId($slides, $id + 1);
 
         return $id;
