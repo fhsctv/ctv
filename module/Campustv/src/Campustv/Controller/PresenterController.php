@@ -46,7 +46,7 @@ class PresenterController extends AbstractActionController {
         //"infoscripte" is shown on all displays
         $infoscripte = $this->getService('Infoscript')->fetchAllActive();
 
-        $slides      = $this->mergeSlides($anzeigen, $infoscripte->toArray());
+        $slides      = $this->mergeSlides($anzeigen->toArray(), $infoscripte->toArray());
 
         $id          = $this->getValidId($slides, $this->params(self::PARAM_ID,0));
 
