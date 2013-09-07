@@ -84,35 +84,35 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface, Se
 //            $resultSetPrototype = new HydratingResultSet($sm->get('hydrator'), new Entity\Url());
             $resultSetPrototype = new ResultSet();
             $resultSetPrototype->setArrayObjectPrototype(new Entity\Url());
-            return new TableGateway('URL', $dbAdapter, null, $resultSetPrototype);
+            return new TableGateway('url', $dbAdapter, null, $resultSetPrototype);
         };
         $kundeTableGateway = function($sm) {
             $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
 //            $resultSetPrototype = new HydratingResultSet($sm->get('hydrator'), new Entity\Kunde());
             $resultSetPrototype = new ResultSet();
             $resultSetPrototype->setArrayObjectPrototype(new Entity\Kunde());
-            return new TableGateway('TBL_PARTNER', $dbAdapter, null, $resultSetPrototype);
+            return new TableGateway('tbl_partner', $dbAdapter, null, $resultSetPrototype);
         };
         $positionTableGateway = function($sm) {
             $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
 //            $resultSetPrototype = new HydratingResultSet($sm->get('hydrator'), new Entity\Position());
             $resultSetPrototype = new ResultSet();
             $resultSetPrototype->setArrayObjectPrototype(new Entity\Position());
-            return new TableGateway('POSITION', $dbAdapter, null, $resultSetPrototype);
+            return new TableGateway('position', $dbAdapter, null, $resultSetPrototype);
         };
         $anzeigeTableGateway = function($sm) {
             $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
 //            $resultSetPrototype = new HydratingResultSet($sm->get('hydrator'), new Entity\Anzeige());
             $resultSetPrototype = new ResultSet();
             $resultSetPrototype->setArrayObjectPrototype(new Entity\Anzeige());
-            return new TableGateway('ANZEIGE_NEW', $dbAdapter, null, $resultSetPrototype);
+            return new TableGateway('anzeige_new', $dbAdapter, null, $resultSetPrototype);
         };
         $infoscriptTableGateway = function($sm) {
             $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
             $resultSetPrototype = new HydratingResultSet($sm->get('hydrator'), new Entity\Infoscript());
 //            $resultSetPrototype = new ResultSet();
 //            $resultSetPrototype->setArrayObjectPrototype(new Entity\Infoscript());
-            return new TableGateway('NACHRICHTEN_PORTALE', $dbAdapter, null, $resultSetPrototype);
+            return new TableGateway('nachrichten_portale', $dbAdapter, null, $resultSetPrototype);
         };
 
         return array(

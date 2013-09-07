@@ -38,7 +38,7 @@ class Anzeige implements \Zend\ServiceManager\FactoryInterface {
         $anzeigeService->setPositions(array('1' => 'Hoersaal', '21' => 'Mensa', '41' => 'Büro'));
 
 
-        $anzeigeService->setCustomers($array_transform($sm->get('Campustv\Service\Kunde'),'PAR_ID', 'PAR_NAME'));
+        $anzeigeService->setCustomers($array_transform($sm->get('Campustv\Service\Kunde'),'par_id', 'par_name'));
 
 
         $cache = $sm->get('config')['constants']['Campustv\ServiceCaching'];

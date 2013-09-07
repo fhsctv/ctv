@@ -50,9 +50,9 @@ class Anzeige extends AbstractTable {
 
     protected function getJoin(Select $select){
 
-        $select->join('URL'
-                     ,'URL.ID = ' . $this->tableGateway->getTable() . '.SUCH_ID',
-                          array('URL'),Select::JOIN_INNER);
+        $select->join('url'
+                     ,'url.id = ' . $this->tableGateway->getTable() . "." . Entity\Anzeige::TBL_COL_SEARCH_ID,
+                          array('url'),Select::JOIN_INNER);
 
 //        return $select->join('TBL_PARTNER'
 //                            ,'KUNDEN_ID = PAR_ID'

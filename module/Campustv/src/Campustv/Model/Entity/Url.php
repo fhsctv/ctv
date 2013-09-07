@@ -6,8 +6,8 @@ use Campustv\Model\IEntity;
 
 class Url implements IEntity {
 
-    const TBL_COL_ID  = 'ID';
-    const TBL_COL_URL = 'URL';
+    const TBL_COL_ID  = 'id';
+    const TBL_COL_URL = 'url';
 
     private $id;
     private $url;

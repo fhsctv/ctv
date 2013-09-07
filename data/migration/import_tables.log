@@ -1,0 +1,55 @@
+SET
+HINWEIS:  CREATE TABLE erstellt implizit eine Sequenz »tbl_partner_par_id_seq« für die »serial«-Spalte »tbl_partner.par_id«
+CREATE TABLE
+HINWEIS:  ALTER TABLE / ADD PRIMARY KEY erstellt implizit einen Index »tbl_partner_pkey« für Tabelle »tbl_partner«
+ALTER TABLE
+HINWEIS:  CREATE TABLE erstellt implizit eine Sequenz »aktuelle_anzeigen_new_id_seq« für die »serial«-Spalte »aktuelle_anzeigen_new.id«
+CREATE TABLE
+HINWEIS:  ALTER TABLE / ADD PRIMARY KEY erstellt implizit einen Index »aktuelle_anzeigen_new_pkey« für Tabelle »aktuelle_anzeigen_new«
+ALTER TABLE
+HINWEIS:  CREATE TABLE erstellt implizit eine Sequenz »anzeige_new_id_seq« für die »serial«-Spalte »anzeige_new.id«
+CREATE TABLE
+HINWEIS:  ALTER TABLE / ADD PRIMARY KEY erstellt implizit einen Index »anzeige_new_pkey« für Tabelle »anzeige_new«
+ALTER TABLE
+CREATE TABLE
+HINWEIS:  ALTER TABLE / ADD PRIMARY KEY erstellt implizit einen Index »ctv_preise_pkey« für Tabelle »ctv_preise«
+ALTER TABLE
+HINWEIS:  CREATE TABLE erstellt implizit eine Sequenz »feiertage_id_seq« für die »serial«-Spalte »feiertage.id«
+CREATE TABLE
+HINWEIS:  ALTER TABLE / ADD PRIMARY KEY erstellt implizit einen Index »feiertage_pkey« für Tabelle »feiertage«
+ALTER TABLE
+HINWEIS:  CREATE TABLE erstellt implizit eine Sequenz »standort_id_seq« für die »serial«-Spalte »standort.id«
+CREATE TABLE
+HINWEIS:  ALTER TABLE / ADD PRIMARY KEY erstellt implizit einen Index »standort_pkey« für Tabelle »standort«
+ALTER TABLE
+HINWEIS:  CREATE TABLE erstellt implizit eine Sequenz »nachrichten_portale_id_seq« für die »serial«-Spalte »nachrichten_portale.id«
+CREATE TABLE
+HINWEIS:  ALTER TABLE / ADD PRIMARY KEY erstellt implizit einen Index »nachrichten_portale_pkey« für Tabelle »nachrichten_portale«
+ALTER TABLE
+CREATE TABLE
+HINWEIS:  ALTER TABLE / ADD PRIMARY KEY erstellt implizit einen Index »position_pkey« für Tabelle »position«
+ALTER TABLE
+HINWEIS:  CREATE TABLE erstellt implizit eine Sequenz »zeitzonen_id_seq« für die »serial«-Spalte »zeitzonen.id«
+CREATE TABLE
+HINWEIS:  ALTER TABLE / ADD PRIMARY KEY erstellt implizit einen Index »zeitzonen_pkey« für Tabelle »zeitzonen«
+ALTER TABLE
+CREATE TABLE
+HINWEIS:  ALTER TABLE / ADD PRIMARY KEY erstellt implizit einen Index »tbl_company_pkey« für Tabelle »tbl_company«
+ALTER TABLE
+CREATE INDEX
+CREATE INDEX
+HINWEIS:  CREATE TABLE erstellt implizit eine Sequenz »tbl_address_adr_id_seq« für die »serial«-Spalte »tbl_address.adr_id«
+CREATE TABLE
+HINWEIS:  ALTER TABLE / ADD PRIMARY KEY erstellt implizit einen Index »tbl_address_pkey« für Tabelle »tbl_address«
+ALTER TABLE
+CREATE INDEX
+HINWEIS:  CREATE TABLE erstellt implizit eine Sequenz »url_id_seq« für die »serial«-Spalte »url.id«
+CREATE TABLE
+HINWEIS:  ALTER TABLE / ADD PRIMARY KEY erstellt implizit einen Index »url_pkey« für Tabelle »url«
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE

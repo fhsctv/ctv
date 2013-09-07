@@ -10,17 +10,17 @@ use Futhuer\Date as FuthuerDate;
 
 class Anzeige implements IEntity {
 
-    const TBL_COL_ID           = 'ID';
-    const TBL_COL_BEGIN_DATE   = 'SCHALTUNGSANFANG';
-    const TBL_COL_END_DATE     = 'SCHALTUNGSENDE';
-    const TBL_COL_PROPABILITY  = 'WAHRSCHEINLICHKEIT';
-    const TBL_COL_SEARCH_ID    = 'SUCH_ID';
-    const TBL_COL_CUSTOMER_ID  = 'KUNDEN_ID';
-    const TBL_COL_DISPLAY_ID   = 'POSITIONS_ID';
-    const TBL_COL_INSIDE_CART  = 'IMWARENKORB';
-    const TBL_COL_BOOKED_WEEKS = 'GEBUCHTE_WOCHEN';
-    const TBL_COL_URL          = 'URL';      //TABLE URL
-    const TBL_COL_CUSTOMER     = 'PAR_NAME'; //TABLE TBL_PARTNER
+    const TBL_COL_ID           = 'id';
+    const TBL_COL_BEGIN_DATE   = 'schaltungsanfang';
+    const TBL_COL_END_DATE     = 'schaltungsende';
+    const TBL_COL_PROPABILITY  = 'wahrscheinlichkeit';
+    const TBL_COL_SEARCH_ID    = 'such_id';
+    const TBL_COL_CUSTOMER_ID  = 'kunden_id';
+    const TBL_COL_DISPLAY_ID   = 'positions_id';
+    const TBL_COL_INSIDE_CART  = 'imwarenkorb';
+    const TBL_COL_BOOKED_WEEKS = 'gebuchte_wochen';
+    const TBL_COL_URL          = 'url';      //TABLE URL
+    const TBL_COL_CUSTOMER     = 'par_name'; //TABLE TBL_PARTNER
 
     private $id;
     private $schaltungsanfang;

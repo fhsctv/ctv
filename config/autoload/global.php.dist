@@ -13,9 +13,11 @@
  */
 
 $db = array(
-    'driver'   => 'oci8',
-    'hostname' => '212.201.65.202/fut1',
-    'charset'  => 'utf8',
+//    'driver'   => 'oci8',
+//    'hostname' => '212.201.65.202/fut1',
+      'charset'  => 'LATIN-1',
+      'driver' => 'Pdo',
+      'dsn'    => 'pgsql:host=192.168.100.130;port=5432;dbname=fut1',
 //    'options' => array('buffer_results' => true)
 );
 

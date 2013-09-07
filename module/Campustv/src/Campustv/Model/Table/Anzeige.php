@@ -97,14 +97,19 @@ class Anzeige extends AbstractTable {
 
     protected function getJoin(Select $select){
 
-        $select->join('URL'
-                     ,'URL.ID = ' . $this->tableGateway->getTable() . '.SUCH_ID',
-                          array('URL'),Select::JOIN_INNER);
+        $select->join('url'
+                     ,'url.id = ' . $this->tableGateway->getTable() . '.such_id',
+                          array('url'),Select::JOIN_INNER);
 
-        return $select->join('TBL_PARTNER'
-                            ,'KUNDEN_ID = PAR_ID'
-                            ,array('PAR_NAME')
+        $select->join('tbl_partner'
+                            ,'kunden_id = par_id'
+                            ,array('par_name')
                             ,Select::JOIN_INNER);
+
+
+//        var_dump($select->getSqlString());
+
+        return $select;
 
     }
 

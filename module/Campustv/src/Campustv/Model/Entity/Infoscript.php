@@ -6,10 +6,10 @@ use Campustv\Model\IEntity;
 
 class Infoscript implements IEntity {
 
-    const TBL_COL_ID         = 'ID';
-    const TBL_COL_URL        = 'URL';
-    const TBL_COL_BEGIN_DATE = 'STARTDATUM';
-    const TBL_COL_END_DATE   = 'ABLAUFDATUM';
+    const TBL_COL_ID         = 'id';
+    const TBL_COL_URL        = 'url';
+    const TBL_COL_BEGIN_DATE = 'startdatum';
+    const TBL_COL_END_DATE   = 'ablaufdatum';
 
     private $id;
     private $url;

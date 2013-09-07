@@ -2,7 +2,7 @@
 
     //array({ zeitzone[{'ID', 'BEZEICHNUNG', 'STANDORT_ID', 'VON', 'BIS'}], ... })
 
-    $result = implode(';',array_map(function($arg){return($arg['VON']);},$this->zeitzonen));
+    $result = implode(';',array_map(function($arg){return($arg['von']);},$this->zeitzonen));
 
     echo $this->escapeHtml($result);
 

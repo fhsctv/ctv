@@ -6,9 +6,9 @@ use Campustv\Model\IEntity;
 
 class Position implements IEntity {
 
-    const TBL_COL_ID          = 'ID';
-    const TBL_COL_NAME        = 'BEZEICHNUNG';
-    const TBL_COL_POSITION_ID = 'STANDORT_ID';
+    const TBL_COL_ID          = 'id';
+    const TBL_COL_NAME        = 'bezeichnung';
+    const TBL_COL_POSITION_ID = 'standort_id';
 
     private $id;
     private $bezeichnung;

@@ -7,6 +7,8 @@ use Zend\View\Model\ViewModel;
 
 use Campustv\Form\Form\DeleteForm;
 
+use Campustv\Model\Entity;
+
 class AnzeigeManagerController extends AbstractActionController {
 
     /**
@@ -84,7 +86,10 @@ class AnzeigeManagerController extends AbstractActionController {
             $anzeigeModel->setWahrscheinlichkeit(5)
                          ->setImwarenkorb(0);
 
-            $this->getService('Anzeige')->saveForAllDisplays($anzeigeModel, $this->getRequest()->getPost()['POSITIONS_ID']);
+
+            var_dump($this->getRequest()->getPost()[Entity\Anzeige::TBL_COL_DISPLAY_ID]);
+
+            $this->getService('Anzeige')->saveForAllDisplays($anzeigeModel, $this->getRequest()->getPost()[Entity\Anzeige::TBL_COL_DISPLAY_ID]);
 
 
             $this->flashMessenger()->addSuccessMessage(self::FLASHMESSENGER_CREATE_SUCCESS);

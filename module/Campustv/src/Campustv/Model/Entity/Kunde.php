@@ -6,8 +6,8 @@ use Campustv\Model\IEntity;
 
 class Kunde implements IEntity {
 
-    const TBL_COL_ID       = 'PAR_ID';
-    const TBL_COL_CUSTOMER = 'PAR_NAME';
+    const TBL_COL_ID       = 'par_id';
+    const TBL_COL_CUSTOMER = 'par_name';
 
     private $id;
     private $name;

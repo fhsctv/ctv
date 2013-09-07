@@ -117,7 +117,7 @@ class Anzeige extends AbstractService implements IService {
 
         foreach ($displayIds as $displayId) {
 
-            $this->save($anzeige->setPositionsId($displayId));
+            $this->save($anzeige->setPositionsId((int) $displayId));
         }
     }
 

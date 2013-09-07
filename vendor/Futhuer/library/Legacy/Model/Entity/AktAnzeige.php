@@ -6,11 +6,11 @@ use Futhuer\Legacy\Model;
 
 class AktAnzeige implements Model\IEntity {
 
-    const TBL_COL_ID                    = "ID";
-    const TBL_COL_POSITIONS_ID          = "POSITIONS_ID";
-    const TBL_COL_ANZAHL_WIEDERHOLUNGEN = "ANZAHL_WIEDERHOLUNGEN";
-    const TBL_COL_ANZEIGE_ID            = "ANZEIGE_ID";
-    const TBL_COL_NEWS_ID               = "NEWS_ID";
+    const TBL_COL_ID                    = "id";
+    const TBL_COL_POSITIONS_ID          = "positions_id";
+    const TBL_COL_ANZAHL_WIEDERHOLUNGEN = "anzahl_wiederholungen";
+    const TBL_COL_ANZEIGE_ID            = "anzeige_id";
+    const TBL_COL_NEWS_ID               = "news_id";
 
 
     protected $id;
@@ -88,12 +88,6 @@ class AktAnzeige implements Model\IEntity {
     public function toDbArray() {
         return $this->getArrayCopy();
     }
-
-
-
-
-
-
 
 }
 

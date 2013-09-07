@@ -40,7 +40,7 @@ class Module
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Entity\Zeitzone());
-                    return new TableGateway('ZEITZONEN', $dbAdapter, null, $resultSetPrototype);
+                    return new TableGateway('zeitzonen', $dbAdapter, null, $resultSetPrototype);
                 };
 
         $aktAnzeigeTable = function($sm) {
@@ -51,7 +51,7 @@ class Module
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Entity\AktAnzeige());
-                    return new TableGateway('AKTUELLE_ANZEIGEN_NEW', $dbAdapter, null, $resultSetPrototype);
+                    return new TableGateway('aktuelle_anzeigen_new', $dbAdapter, null, $resultSetPrototype);
                 };
 
         return array(

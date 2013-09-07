@@ -2,15 +2,15 @@
 $count = 0;
 
 foreach ($this->anzeigen as $a) :
-    $id       = $this->escapeHtml($a['ID']);
-    $start    = $this->escapeHtml($a['SCHALTUNGSANFANG']);
-    $end      = $this->escapeHtml($a['SCHALTUNGSENDE']);
-    $booked   = $this->escapeHtml($a['GEBUCHTE_WOCHEN']);
-    $customer = $this->escapeHtml($a['PAR_NAME']);
-    $display  = $this->escapeHtml($a['POSITIONS_ID']);
+    $id       = $this->escapeHtml($a['id']);
+    $start    = $this->escapeHtml($a['schaltungsanfang']);
+    $end      = $this->escapeHtml($a['schaltungsende']);
+    $booked   = $this->escapeHtml($a['gebuchte_wochen']);
+    $customer = $this->escapeHtml($a['par_name']);
+    $display  = $this->escapeHtml($a['positions_id']);
     $edit     = $this->escapeHtml($this->url('campustv/anzeige-manager/default', array('action' => 'edit-anzeige', 'id' => $id)));
     $delete   = $this->escapeHtml($this->url('campustv/anzeige-manager/default', array('action' => 'delete-anzeige', 'id' => $id)));
-    $url      = $this->escapeHtml($a['URL']);
+    $url      = $this->escapeHtml($a['url']);
 
     ++$count;
     ?>

@@ -10,7 +10,8 @@ use Campustv\Model;
 abstract class AbstractTable implements Model\ITable {
 
 
-    const ORACLE_TODAY_STRING = 'trunc(sysdate)';
+//    const ORACLE_TODAY_STRING = 'trunc(sysdate)';
+    const ORACLE_TODAY_STRING = 'NOW()';
 
     protected $tableGateway;
 
