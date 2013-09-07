@@ -10,6 +10,7 @@ $modules = array(
         'Futhuer',
         'ZendDeveloperTools',
         'ZFTool',
+        'BjyProfiler',
     );
 
 return array(
