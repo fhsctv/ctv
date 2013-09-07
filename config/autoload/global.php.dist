@@ -23,7 +23,7 @@ $db = array(
 
 $service_manager = array(
     'factories' => array(
-        'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
+//        'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
         'Zend\Cache\Storage\Filesystem' => function($sm) {
                 $cache = Zend\Cache\StorageFactory::factory(array(
                             'adapter' => 'filesystem',
