@@ -1,35 +1,27 @@
 <?php
-$count = 0;
+    $edit = $this->escapeHtml($this->url('campustv/anzeige-manager/default', array('action' => 'edit-anzeige', 'id' => $this->id)));
+    $delete = $this->escapeHtml($this->url('campustv/anzeige-manager/default', array('action' => 'delete-anzeige', 'id' => $this->id)));
 
-foreach ($this->anzeigen as $a) :
-    $id       = $this->escapeHtml($a['id']);
-    $start    = $this->escapeHtml($a['schaltungsanfang']);
-    $end      = $this->escapeHtml($a['schaltungsende']);
-    $booked   = $this->escapeHtml($a['gebuchte_wochen']);
-    $customer = $this->escapeHtml($a['par_name']);
-    $display  = $this->escapeHtml($a['positions_id']);
-    $edit     = $this->escapeHtml($this->url('campustv/anzeige-manager/default', array('action' => 'edit-anzeige', 'id' => $id)));
-    $delete   = $this->escapeHtml($this->url('campustv/anzeige-manager/default', array('action' => 'delete-anzeige', 'id' => $id)));
-    $url      = $this->escapeHtml($a['url']);
-
-    ++$count;
-    ?>
-
-    <?php if ($count % 2 == 1) : //ungerade zeilen weiß lassen ?>
-        <tr class="tr1">
-        <?php else : //gerade zeilen mit grauem hintergrund belegen ?>
-        <tr class="tr1 grey">
-        <?php endif; ?>
-
-        <td class="b2">         <?= $start ?></td>
-        <td class="b2">         <?= $end ?></td>
-        <td class="b2">         <?= $booked ?></td>
-        <td class="b2">         <?= $customer ?></td>
-        <td class="b2">         <?= $display ?></td>
-        <td class="b3"><a href="<?= $edit ?>">                <img src="/img/campustv/icons/edit-16.png"/>   </a> </td>
-        <td class="b3"><a href="<?= $delete ?>">              <img src="/img/campustv/icons/delete-16.png"/> </a> </td>
-        <td class="b4"><a href="<?= $url ?>" target="_blank"> <img src="/img/campustv/icons/url-16.png"/>    </a> </td>
-    </tr>
-    <?php
-endforeach;
+    $count = $this->partialLoop()->getPartialCounter(); //every partial which belongs to a partial loop knows this
+    $trStyleClass = ($count % 2) ? 'tr1' : 'tr1 grey';
 ?>
+
+
+
+<tr class="<?= $trStyleClass ?>">
+    <td class="b2">         <?= $this->schaltungsanfang ?>                                                                  </td>
+    <td class="b2">         <?= $this->schaltungsende   ?>                                                                  </td>
+    <td class="b2">         <?= $this->gebuchte_wochen  ?>                                                                  </td>
+    <td class="b2">         <?= $this->par_name         ?>                                                                  </td>
+    <td class="b2">         <?= $this->positions_id     ?>                                                                  </td>
+    <td class="b3"><a href="<?= $edit                   ?>                "> <img src="/img/campustv/icons/edit-16.png"  /> </a> </td>
+    <td class="b3"><a href="<?= $delete                 ?>                "> <img src="/img/campustv/icons/delete-16.png"/> </a> </td>
+    <td class="b4"><a href="<?= $this->url              ?>" target="_blank"> <img src="/img/campustv/icons/url-16.png"   /> </a> </td>
+</tr>
+
+
+
+
+
+
+

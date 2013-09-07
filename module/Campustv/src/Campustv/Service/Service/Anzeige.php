@@ -78,17 +78,17 @@ class Anzeige extends AbstractService implements IService {
 
 
     public function fetchAllActive($display){
-        return $this->getTable()->fetchAllActive($display)->toArray();
+        return $this->getTable()->fetchAllActive($display);
     }
 
 
     public function fetchAllOutdated($display){
-        return $this->getTable()->fetchAllOutdated($display)->toArray();
+        return $this->getTable()->fetchAllOutdated($display);
     }
 
 
     public function fetchAllFuture($display){
-        return $this->getTable()->fetchAllFuture($display)->toArray();
+        return $this->getTable()->fetchAllFuture($display);
     }
 
 

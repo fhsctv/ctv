@@ -34,25 +34,24 @@ $route_show    = 'campustv/anzeige-manager/show-anzeige';
 
 </style>
 
+<?php
+    $displayFlashMessage = function($flashMessage){
+        echo $flashMessage . "<br/>";
+    }
+?>
+
+
+
 <h1>CampusTV Manager Anzeigen</h1>
 
 <div style="background-color: #0F0; font-size: larger;">
-<?php
-foreach ($this->flashMessagesSuccess as $message){
-    echo $message . "<br/>";
-}?>
+    <?php array_map($displayFlashMessage, $this->flashMessagesSuccess); ?>
 </div>
 <div style="background-color: #F00; font-size: larger;">
-<?php
-foreach ($this->flashMessagesFail as $message){
-    echo $message . "<br/>";
-}?>
+    <?php array_map($displayFlashMessage, $this->flashMessagesFail); ?>
 </div>
 <div style="background-color: #FF0; font-size: larger;">
-<?php
-foreach ($this->flashMessagesInfo as $message){
-    echo $message . "<br/>";
-}?>
+    <?php array_map($displayFlashMessage, $this->flashMessagesInfo); ?>
 </div>
 
 Display:
@@ -74,7 +73,7 @@ Aufgaben:
     </thead>
 
     <tbody>
-        <?= $this->partial($this->url($route_default) . '/partial/anzeige/anzeige.phtml', array('anzeigen' => $this->active)); ?>
+        <?= $this->partialLoop($this->url($route_default) . '/partial/anzeige/anzeige.phtml', $this->active); ?>
     </tbody>
 </table>
 
@@ -88,7 +87,7 @@ Aufgaben:
     </thead>
 
     <tbody>
-        <?= $this->partial($this->url($route_default) . '/partial/anzeige/anzeige.phtml', array('anzeigen' => $this->outdated)); ?>
+        <?= $this->partialLoop($this->url($route_default) . '/partial/anzeige/anzeige.phtml', $this->outdated); ?>
     </tbody>
 </table>
 
@@ -104,6 +103,6 @@ Aufgaben:
     </thead>
 
     <tbody>
-<?= $this->partial($this->url($route_default) . '/partial/anzeige/anzeige.phtml', array('anzeigen' => $this->future)); ?>
+<?= $this->partialLoop($this->url($route_default) . '/partial/anzeige/anzeige.phtml', $this->future); ?>
     </tbody>
 </table>

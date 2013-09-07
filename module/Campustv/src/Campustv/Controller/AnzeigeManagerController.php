@@ -57,6 +57,7 @@ class AnzeigeManagerController extends AbstractActionController {
                       'flashMessagesSuccess' => $this->flashMessenger()->getSuccessMessages(),
                       'flashMessagesInfo'    => $this->flashMessenger()->getInfoMessages(),
                       'flashMessagesFail'    => $this->flashMessenger()->getErrorMessages(),
+                      'route'                => self::ROUTE_DEFAULT,
                      )
         );
 
@@ -138,7 +139,7 @@ class AnzeigeManagerController extends AbstractActionController {
         }
 
 
-        $urlModel->setUrl($form->get('URL')->getValue())
+        $urlModel->setUrl($form->get('url')->getValue())
                  ->setId($this->getService('Url')->save($urlModel));
 
         $anzeigeModel->exchangeArray($form->getData()->getArrayCopy());

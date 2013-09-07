@@ -8,7 +8,7 @@ Sind Sie sicher, dass Sie die Anzeige <?php echo $anzeige->getId() ?> mit der Ad
 <?php
 $form = $this->form;
 
-$form->setAttribute('action', $this->url('campustv/manager/default', array('action' => 'delete-anzeige', 'id' => $id)));
+$form->setAttribute('action', $this->url('campustv/anzeige-manager/default', array('action' => 'delete-anzeige', 'id' => $id)));
 $form->prepare();
 
 echo $this->form()->openTag($form);
