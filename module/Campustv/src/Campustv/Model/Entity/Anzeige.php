@@ -10,17 +10,17 @@ use Futhuer\Date as FuthuerDate;
 
 class Anzeige implements IEntity {
 
-    const TBL_COL_ID           = 'ID';
-    const TBL_COL_BEGIN_DATE   = 'SCHALTUNGSANFANG';
-    const TBL_COL_END_DATE     = 'SCHALTUNGSENDE';
-    const TBL_COL_PROPABILITY  = 'WAHRSCHEINLICHKEIT';
-    const TBL_COL_SEARCH_ID    = 'SUCH_ID';
-    const TBL_COL_CUSTOMER_ID  = 'KUNDEN_ID';
-    const TBL_COL_DISPLAY_ID   = 'POSITIONS_ID';
-    const TBL_COL_INSIDE_CART  = 'IMWARENKORB';
-    const TBL_COL_BOOKED_WEEKS = 'GEBUCHTE_WOCHEN';
-    const TBL_COL_URL          = 'URL';      //TABLE URL
-    const TBL_COL_CUSTOMER     = 'PAR_NAME'; //TABLE TBL_PARTNER
+    const TBL_COL_ID           = 'id';
+    const TBL_COL_BEGIN_DATE   = 'schaltungsanfang';
+    const TBL_COL_END_DATE     = 'schaltungsende';
+    const TBL_COL_PROPABILITY  = 'wahrscheinlichkeit';
+    const TBL_COL_SEARCH_ID    = 'such_id';
+    const TBL_COL_CUSTOMER_ID  = 'kunden_id';
+    const TBL_COL_DISPLAY_ID   = 'positions_id';
+    const TBL_COL_INSIDE_CART  = 'imwarenkorb';
+    const TBL_COL_BOOKED_WEEKS = 'gebuchte_wochen';
+    const TBL_COL_URL          = 'url';      //TABLE URL
+    const TBL_COL_CUSTOMER     = 'par_name'; //TABLE TBL_PARTNER
 
     private $id;
     private $schaltungsanfang;
@@ -131,6 +131,11 @@ class Anzeige implements IEntity {
         return $this;
     }
 
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
+    }
+
 
 
 
@@ -168,17 +173,20 @@ class Anzeige implements IEntity {
     }
 
     public function toDbArray(){
-        return array(
-          self::TBL_COL_ID           => $this->id ,
-          self::TBL_COL_BEGIN_DATE   => $this->schaltungsanfang,
-          self::TBL_COL_END_DATE     => $this->schaltungsende,
-          self::TBL_COL_PROPABILITY  => $this->wahrscheinlichkeit,
-          self::TBL_COL_SEARCH_ID    => $this->such_id,
-          self::TBL_COL_CUSTOMER_ID  => $this->kunden_id,
-          self::TBL_COL_DISPLAY_ID   => $this->positions_id,
-          self::TBL_COL_INSIDE_CART  => $this->imwarenkorb,
-          self::TBL_COL_BOOKED_WEEKS => $this->gebuchte_wochen,
-        );
+
+        $result = array();
+
+        (!$this->id)                 ? : $result[self::TBL_COL_ID]           = $this->id ;
+        (!$this->schaltungsanfang)   ? : $result[self::TBL_COL_BEGIN_DATE]   = $this->schaltungsanfang ;
+        (!$this->schaltungsende)     ? : $result[self::TBL_COL_END_DATE]     = $this->schaltungsende ;
+        (!$this->wahrscheinlichkeit) ? : $result[self::TBL_COL_PROPABILITY]  = $this->wahrscheinlichkeit ;
+        (!$this->such_id)            ? : $result[self::TBL_COL_SEARCH_ID]    = $this->such_id ;
+        (!$this->kunden_id)          ? : $result[self::TBL_COL_CUSTOMER_ID]  = $this->kunden_id ;
+        (!$this->positions_id)       ? : $result[self::TBL_COL_DISPLAY_ID]   = $this->positions_id ;
+        (!$this->imwarenkorb)        ? : $result[self::TBL_COL_INSIDE_CART]  = $this->imwarenkorb ;
+        (!$this->gebuchte_wochen)    ? : $result[self::TBL_COL_BOOKED_WEEKS] = $this->gebuchte_wochen ;
+
+        return $result;
 
 
     }
