@@ -13,10 +13,6 @@ use Zend\Db\TableGateway\TableGateway;
 
 use Campustv\Model\Entity    as Entity;
 use Campustv\Model\Table     as Table;
-use Campustv\Service\Factory as ServiceFactory;
-
-use Campustv\Service\Service\Url          as UrlService;
-
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface, ServiceProviderInterface {
 
@@ -79,40 +75,62 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface, Se
 
 
     private function getGatewayFactories(){
-        $urlTableGateway = function($sm) {
+
+        $urlTableGateway        = function($sm) {
+
             $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
 //            $resultSetPrototype = new HydratingResultSet($sm->get('hydrator'), new Entity\Url());
-            $resultSetPrototype = new ResultSet();
-            $resultSetPrototype->setArrayObjectPrototype(new Entity\Url());
-            return new TableGateway('url', $dbAdapter, null, $resultSetPrototype);
+            $resultSetPrototype = new ResultSet(ResultSet::TYPE_ARRAYOBJECT, new Entity\Url());
+
+            $sequence = new \Zend\Db\TableGateway\Feature\SequenceFeature('id', 'url_id_seq');
+
+            return new TableGateway('url', $dbAdapter, $sequence, $resultSetPrototype);
         };
-        $kundeTableGateway = function($sm) {
+
+        $kundeTableGateway      = function($sm) {
+
             $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
 //            $resultSetPrototype = new HydratingResultSet($sm->get('hydrator'), new Entity\Kunde());
-            $resultSetPrototype = new ResultSet();
-            $resultSetPrototype->setArrayObjectPrototype(new Entity\Kunde());
-            return new TableGateway('tbl_partner', $dbAdapter, null, $resultSetPrototype);
+            $resultSetPrototype = new ResultSet(ResultSet::TYPE_ARRAYOBJECT, new Entity\Kunde());
+
+            $sequence = new \Zend\Db\TableGateway\Feature\SequenceFeature('par_id', 'tbl_partner_par_id_seq');
+
+            return new TableGateway('tbl_partner', $dbAdapter, $sequence, $resultSetPrototype);
+
         };
-        $positionTableGateway = function($sm) {
+
+        $positionTableGateway   = function($sm) {
+
             $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
 //            $resultSetPrototype = new HydratingResultSet($sm->get('hydrator'), new Entity\Position());
-            $resultSetPrototype = new ResultSet();
-            $resultSetPrototype->setArrayObjectPrototype(new Entity\Position());
-            return new TableGateway('position', $dbAdapter, null, $resultSetPrototype);
+            $resultSetPrototype = new ResultSet(ResultSet::TYPE_ARRAYOBJECT, new Entity\Position());
+
+            $sequence = new \Zend\Db\TableGateway\Feature\SequenceFeature('id', 'standort_id_seq');
+
+            return new TableGateway('standort', $dbAdapter, $sequence, $resultSetPrototype);
+
         };
-        $anzeigeTableGateway = function($sm) {
+
+        $anzeigeTableGateway    = function($sm) {
+
             $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
 //            $resultSetPrototype = new HydratingResultSet($sm->get('hydrator'), new Entity\Anzeige());
-            $resultSetPrototype = new ResultSet();
-            $resultSetPrototype->setArrayObjectPrototype(new Entity\Anzeige());
-            return new TableGateway('anzeige_new', $dbAdapter, null, $resultSetPrototype);
+            $resultSetPrototype = new ResultSet(ResultSet::TYPE_ARRAYOBJECT, new Entity\Anzeige());
+
+            $sequence = new \Zend\Db\TableGateway\Feature\SequenceFeature('id', 'anzeige_new_id_seq');
+
+            return new TableGateway('anzeige_new', $dbAdapter, $sequence, $resultSetPrototype);
+
         };
+
         $infoscriptTableGateway = function($sm) {
+
             $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
             $resultSetPrototype = new HydratingResultSet($sm->get('hydrator'), new Entity\Infoscript());
-//            $resultSetPrototype = new ResultSet();
-//            $resultSetPrototype->setArrayObjectPrototype(new Entity\Infoscript());
-            return new TableGateway('nachrichten_portale', $dbAdapter, null, $resultSetPrototype);
+
+            $sequence = new \Zend\Db\TableGateway\Feature\SequenceFeature('id', 'nachrichten_portale_id_seq');
+
+            return new TableGateway('nachrichten_portale', $dbAdapter, $sequence, $resultSetPrototype);
         };
 
         return array(

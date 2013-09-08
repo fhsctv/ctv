@@ -38,20 +38,7 @@ class Url extends AbstractTable {
         }
 
 
-        $id = parent::save($urlModel);
-
-        if($id){
-            return $id;
-        }
-
-        /*
-         * The following is needed as $this->tableGateway->getLastInsertValue()
-         * is not implemented yet
-         */
-        //TODO Update Zend Framework 2 and look if getLastGeneratedValue() in Zend\Db\Adapter\Driver\Oci8\Connection is implemented.
-        //if so, replace the following code with return $this->tableGateway->getLastInsertValue();
-
-        return $this->getMaxId($urlModel);
+        return parent::save($urlModel);
 
     }
 
@@ -65,27 +52,6 @@ class Url extends AbstractTable {
 
     protected function getColumns(Select $select) {
         return $select;
-    }
-
-    protected function getMaxId($urlModel){
-
-        $idResultSet = $this->tableGateway->select(
-            function(Select $select) use ($urlModel) {
-
-                $select->columns(array(Entity\Url::TBL_COL_ID =>
-                                        new Expression('max('. Entity\Url::TBL_COL_ID .')')
-                            )
-                        );
-                $select->where(array(Entity\Url::TBL_COL_URL => $urlModel->getUrl()));
-
-
-               return $select;
-            }
-        );
-
-        $urlModel = $idResultSet->current();
-
-        return $urlModel->getId();
     }
 
     protected function getJoin(Select $select) {

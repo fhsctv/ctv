@@ -64,7 +64,7 @@ abstract class AbstractTable implements Model\ITable {
         if ($id == 0) {
             $this->tableGateway->insert($entity->toDbArray());
 
-            return null;
+            return $this->tableGateway->getLastInsertValue();
         }
 
         if ($this->get($id)) {
