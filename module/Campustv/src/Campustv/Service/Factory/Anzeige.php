@@ -34,8 +34,8 @@ class Anzeige implements \Zend\ServiceManager\FactoryInterface {
         $anzeigeService->setTable($sm->get('Campustv\Model\Table\Anzeige'));
         $anzeigeService->setUrlTable($sm->get('Campustv\Model\Table\Url'));
 
-        //$anzeigeService->setPositions($array_transform($sm->get('Campustv\Model\Table\Table\Position'),'ID', 'BEZEICHNUNG'));
-        $anzeigeService->setPositions(array('1' => 'Hoersaal', '21' => 'Mensa', '41' => 'Büro'));
+        $anzeigeService->setPositions($array_transform($sm->get('Campustv\Model\Table\Position'),'id', 'bezeichnung'));
+//        $anzeigeService->setPositions(array('1' => 'Hoersaal', '21' => 'Mensa', '41' => 'Büro'));
 
 
         $anzeigeService->setCustomers($array_transform($sm->get('Campustv\Service\Kunde'),'par_id', 'par_name'));
