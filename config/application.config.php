@@ -2,6 +2,9 @@
 
 // This should be an array of module namespaces used in the application.
 $modules = array(
+        'ZfcBase',
+        'ZfcUser',
+        #'BjyAuthorize',
         'Application',
         #'Generic',
         'Campustv',
