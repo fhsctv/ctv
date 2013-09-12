@@ -21,7 +21,7 @@ class AktuelleAnzeigen implements \Zend\ServiceManager\FactoryInterface {
 
     /**
      *
-     * @var type
+     * @var int
      */
     const TYPE_ANZEIGE    = 0;
     const TYPE_INFOSCRIPT = 2;
