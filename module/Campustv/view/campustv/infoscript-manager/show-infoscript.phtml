@@ -1,4 +1,22 @@
-<?php $this->headTitle('Manager - Infoscripte'); ?>
+<?php
+    $this->headTitle('Manager - Infoscripte');
+
+    $displayFlashMessage  = function($flashMessage){
+        echo $flashMessage . "<br/>";
+    };
+
+    $tableHeadPartialPath = $this->url($this->route) .
+            '/partial/infoscript/header.phtml';
+
+    $tableBodyPartialPath = $this->url($this->route) .
+            '/partial/infoscript/infoscript.phtml';
+
+    $createUrl = $this->escapeHtml($this->url($this->route,
+                           array('action' => 'create-infoscript')));
+
+    $newIconUrl = "/img/campustv/icons/new-16.png";
+
+?>
 
 <style type="text/css">
     th, b1 {
@@ -29,11 +47,6 @@
 </style>
 
 
-<?php
-    $displayFlashMessage = function($flashMessage){
-        echo $flashMessage . "<br/>";
-    }
-?>
 
 <h1>CampusTV Infoscriptmanager</h1>
 
@@ -47,24 +60,24 @@
     <?php array_map($displayFlashMessage, $this->flashMessagesInfo); ?>
 </div>
 
-Aufgaben: <a href="<?php echo $this->escapeHtml($this->url($this->route, array('action' => 'create-infoscript'))); ?>"><img src="/img/campustv/icons/new-16.png"/></a>
+Aufgaben: <a href="<?= $createUrl  ?>"> <img src= "<?= $newIconUrl ?>"/> </a>
 
 
 <h2>Aktive Infoscripte</h2>
 <table>
-    <?= $this->partial($this->url($this->route) . '/partial/infoscript/header.phtml', array()); ?>
-    <?= $this->partialLoop($this->url($this->route) . '/partial/infoscript/infoscript.phtml', $this->active); ?>
+    <?= $this->partial($tableHeadPartialPath);                      ?>
+    <?= $this->partialLoop($tableBodyPartialPath, $this->active);   ?>
 </table>
 
 
 <h2>Abgelaufene Infoscripte</h2>
 <table>
-    <?= $this->partial($this->url($this->route) . '/partial/infoscript/header.phtml', array()); ?>
-    <?= $this->partialLoop($this->url($this->route) . '/partial/infoscript/infoscript.phtml', $this->outdated); ?>
+    <?= $this->partial($tableHeadPartialPath);                      ?>
+    <?= $this->partialLoop($tableBodyPartialPath, $this->outdated); ?>
 </table>
 
 <h2>Zukünftige Infoscripte</h2>
 <table>
-    <?= $this->partial($this->url($this->route) . '/partial/infoscript/header.phtml', array()); ?>
-    <?= $this->partialLoop($this->url($this->route) . '/partial/infoscript/infoscript.phtml', $this->future); ?>
+    <?= $this->partial($tableHeadPartialPath);                      ?>
+    <?= $this->partialLoop($tableBodyPartialPath, $this->future);   ?>
 </table>
