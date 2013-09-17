@@ -6,13 +6,13 @@ $modules = array(
         'ZfcUser',
         #'BjyAuthorize',
         'Application',
-        #'Generic',
-        'Campustv',
+        'Administration',
+        'Company',
         'Legacyctv',
-        'Editor',
+        #'Editor',
         'Futhuer',
         'ZendDeveloperTools',
-        'ZFTool',
+        #'ZFTool',
         'BjyProfiler',
     );
 

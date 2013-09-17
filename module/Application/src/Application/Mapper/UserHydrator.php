@@ -12,8 +12,6 @@ class UserHydrator extends ZfcUserHydrator {
         $data = parent::extract($object);
         //Avoid errors due to db insertion of null value
 
-        var_dump($data);
-
         if (empty($data['user_id']))
         {
             unset($data['user_id']);
