@@ -1,0 +1,27 @@
+<?php
+    $edit = $this->escapeHtml($this->url('campustv/anzeige-manager/default', array('action' => 'edit-anzeige', 'id' => $this->id)));
+    $delete = $this->escapeHtml($this->url('campustv/anzeige-manager/default', array('action' => 'delete-anzeige', 'id' => $this->id)));
+
+    $count = $this->partialLoop()->getPartialCounter(); //every partial which belongs to a partial loop knows this
+    $trStyleClass = ($count % 2) ? 'tr1' : 'tr1 grey';
+?>
+
+
+
+<tr class="<?= $trStyleClass ?>">
+    <td class="b2">         <?= $this->schaltungsanfang ?>                                                                  </td>
+    <td class="b2">         <?= $this->schaltungsende   ?>                                                                  </td>
+    <td class="b2">         <?= $this->gebuchte_wochen  ?>                                                                  </td>
+    <td class="b2">         <?= $this->par_name         ?>                                                                  </td>
+    <td class="b2">         <?= $this->positions_id     ?>                                                                  </td>
+    <td class="b3"><a href="<?= $edit                   ?>                "> <img src="/img/campustv/icons/edit-16.png"  /> </a> </td>
+    <td class="b3"><a href="<?= $delete                 ?>                "> <img src="/img/campustv/icons/delete-16.png"/> </a> </td>
+    <td class="b4"><a href="<?= $this->url              ?>" target="_blank"> <img src="/img/campustv/icons/url-16.png"   /> </a> </td>
+</tr>
+
+
+
+
+
+
+

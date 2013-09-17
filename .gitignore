@@ -2,3 +2,5 @@ composer.lock
 nbproject/
 config/autoload/local.php
 data/cache
+vendor/bjyoungblood/bjy-authorize/
+vendor/zf-commons/

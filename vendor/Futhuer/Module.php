@@ -31,7 +31,7 @@ class Module
             $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
             $resultSetPrototype = new ResultSet();
             $resultSetPrototype->setArrayObjectPrototype(new Entity\AktAnzeige());
-            return new TableGateway('AKTUELLE_ANZEIGEN_NEW', $dbAdapter, null, $resultSetPrototype);
+            return new TableGateway('aktuelle_anzeigen_new', $dbAdapter, null, $resultSetPrototype);
         };
 
 
@@ -44,7 +44,7 @@ class Module
             $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
             $resultSetPrototype = new ResultSet();
             $resultSetPrototype->setArrayObjectPrototype(new Entity\Infoscript());
-            return new TableGateway('NACHRICHTEN_PORTALE', $dbAdapter, null, $resultSetPrototype);
+            return new TableGateway('nachrichten_portale', $dbAdapter, null, $resultSetPrototype);
         };
 
         $anzeigeTable    = function($sm) {
@@ -56,7 +56,7 @@ class Module
             $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
             $resultSetPrototype = new ResultSet();
             $resultSetPrototype->setArrayObjectPrototype(new Entity\Anzeige());
-            return new TableGateway('ANZEIGE_NEW', $dbAdapter, null, $resultSetPrototype);
+            return new TableGateway('anzeige_new', $dbAdapter, null, $resultSetPrototype);
         };
 
         return array(

@@ -6,11 +6,11 @@ use Legacyctv\Model;
 
 class Zeitzone implements Model\IEntity {
 
-    const TBL_COL_ID       = 'ID';
-    const TBL_COL_NAME     = 'BEZEICHNUNG';
-    const TBL_COL_POSITION = 'STANDORT_ID';
-    const TBL_COL_BEGIN    = 'VON';
-    const TBL_COL_END      = 'BIS';
+    const TBL_COL_ID       = 'id';
+    const TBL_COL_NAME     = 'bezeichnung';
+    const TBL_COL_POSITION = 'standort_id';
+    const TBL_COL_BEGIN    = 'von';
+    const TBL_COL_END      = 'bis';
 
     public $id;
     public $name;

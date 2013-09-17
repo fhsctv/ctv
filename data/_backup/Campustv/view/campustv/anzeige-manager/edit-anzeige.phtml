@@ -1,0 +1,41 @@
+
+<?php $this->headTitle('Manager - Anzeige bearbeiten')?>
+
+<h1>CampusTV Manager Anzeige bearbeiten</h1>
+
+
+
+
+
+<?php
+
+use CampusTV\Model\Entity\Anzeige as AnzeigeModel;
+
+$form = $this->form;
+$form->setAttribute('action', $this->url($this->route, array('action' => 'edit-anzeige', 'id' => $this->id)));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+
+//echo $this->formCollection($form);
+?>
+
+
+
+<ul class="form-list">
+
+    <li><?= $this->partial($this->url($this->route).'/partial/formElement.phtml',array('formElement' => $form->get(AnzeigeModel::TBL_COL_CUSTOMER_ID)));  ?></li>
+    <li><?= $this->partial($this->url($this->route).'/partial/formElement.phtml',array('formElement' => $form->get(AnzeigeModel::TBL_COL_BEGIN_DATE)));   ?></li>
+    <li><?= $this->partial($this->url($this->route).'/partial/formElement.phtml',array('formElement' => $form->get(AnzeigeModel::TBL_COL_BOOKED_WEEKS))); ?></li>
+
+    <?= $this->formHidden($form->get(AnzeigeModel::TBL_COL_DISPLAY_ID)) ?>
+
+    <li><?= $this->partial($this->url($this->route).'/partial/formElement.phtml',array('formElement' => $form->get(AnzeigeModel::TBL_COL_URL)));          ?></li>
+</ul>
+
+
+<?php
+    echo $this->formSubmit($form->get('submit'));
+    echo $this->form()->closeTag();
+?>
