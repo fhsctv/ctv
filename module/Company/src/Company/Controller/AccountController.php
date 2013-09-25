@@ -12,6 +12,8 @@ namespace Company\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
+use Company\Model\Entity;
+
 class AccountController extends AbstractActionController
 {
     public function indexAction()
@@ -22,7 +24,28 @@ class AccountController extends AbstractActionController
     }
 
     public function showAction(){
-        return new ViewModel(array('content' => 'SHOW ACTION'));
+
+
+        $anzeigeTable = new \Company\Model\Table\Anzeige(new \Zend\Db\TableGateway\TableGateway('anzeige_new'
+                                                        ,$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter')
+                                                        ,null
+                                                        ,new \Zend\Db\ResultSet\ResultSet(\Zend\Db\ResultSet\ResultSet::TYPE_ARRAYOBJECT, new \Company\Model\Entity\Anzeige())
+            )
+        );
+
+
+
+
+        $company = new Entity\Company("MusterUnternehmen GmbH", "Musterstraße", "41", "535783", "Musterstadt");
+        $company->getContact()->setPhone('0000/123456');
+        $company->getContact()->setFax('0000/7895321');
+
+        return new ViewModel(array(
+                'content'  => 'SHOW ACTION',
+                'company'  => $company,
+                'anzeigen' => $anzeigeTable->fetchAllOutdated(5452)
+            )
+        );
     }
 
     public function editAction(){

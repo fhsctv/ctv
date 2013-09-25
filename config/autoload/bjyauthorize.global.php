@@ -101,8 +101,8 @@ return array(
              */
             'BjyAuthorize\Guard\Controller' => array(
 
-                array('controller' => array('Campustv\Controller\InfoscriptManager', 'Campustv\Controller\AnzeigeManager'),
-                      'roles'      => array('admin'),
+                array('controller' => array('Administration\Controller\Infoscript', 'Administration\Controller\Anzeige'),
+                      'roles'      => array('user', 'admin'),
                 ),
 //                array('controller' => 'Campustv\Controller\InfoscriptManager', 'roles' => array('admin')),
 //                array('controller' => 'Campustv\Controller\AnzeigeManager', 'roles' => array('user')),

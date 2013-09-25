@@ -1,3 +1,125 @@
-<h2>COMPANY- MODULE ACCOUNT VIEW SCRIPT</h2>
+<?php
+    $route = $this->url("company/default", array('controller'=>'account'));
+    $tableHeadPartialPath = $route . "/partial/anzeige/header.phtml";
+    $tableBodyPartialPath = $route . "/partial/anzeige/anzeige.phtml";
+?>
 
-<?php echo $content ?>
+<style type="text/css">
+    th, b1 {
+        background-color: yellowgreen;
+        border: 2px solid blue;
+        text-align: left;
+    }
+
+    td.b2 {
+        border: 1px solid blue;
+        text-align: left;
+    }
+
+    td.b3 {
+        border: 1px solid blue;
+        text-align: center;
+    }
+
+    tr.tr1{
+        border: 1px solid blue;
+        text-align: left;
+    }
+
+    tr.grey {
+        background-color: gainsboro;
+    }
+
+</style>
+
+<h2>IHR UNTERNEHMENSPROFIL</h2>
+
+<!---------------------------------------------------------------- PROFIL ----->
+
+    <div style="width: 100%;">
+
+<!----- PROFILBILD ------------------------------------------------------------>
+
+        <div style="float:left; margin-right: 15px; margin-top: 15px; max-height: 150px; max-width: 150px;">
+            <img src="/img/zf2-logo.png" style="width:150px;"/>
+        </div>
+
+<!----- PROFILDATEN ----------------------------------------------------------->
+
+        <div style="float:left; max-width: 400px;">
+            <h3><?= $this->company->getName() ?> <a href="#"><img src="/img/administration/icons/edit-16.png"></a>  </h3>
+
+            <h4><?= $this->company->getContact()->getStreet()  ?> </h4>
+            <h5><?= $this->company->getContact()->getZipCode() ?> </h5>
+            <h5><?= $this->company->getContact()->getTown()    ?> </h5>
+            max@musterunternehmen.tld <br/>
+            Tel:   <?= $this->company->getContact()->getPhone(); ?> <br/>
+            Fax:   <?= $this->company->getContact()->getFax(); ?> <br/>
+
+        </div>
+
+        <div style="float:left; padding-left:20px">
+            <h3>Registrierte Mitarbeiter </h3>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Vorname</th>
+                    <th>Email</th>
+                </tr>
+                <tr>
+                    <td>Mustermann</td>
+                    <td>Max</td>
+                    <td>max.mustermann@musterunte.tld</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+<!-------------------------------------------------------------- ANZEIGEN ----->
+
+    <div style="float: left; width: 100%;">
+        <hr>
+        <h3>Ihre aktiven Anzeigen</h3>
+
+
+        <table>
+            <?= $this->partial($tableHeadPartialPath, array()); ?>
+            <?= $this->partialLoop($tableBodyPartialPath, $this->anzeigen); ?>
+        </table>
+
+    </div>
+
+<!------------------------------------------------------------ RECHNUNGEN ----->
+
+    <div style="float: left; width: 100%;">
+        <hr>
+        <h3>Ihre Rechnungen</h3>
+
+        <table style="width: 100%">
+            <tr>
+                <th>Rechnungsnummer</th>
+                <th>Rechnungsdatum</th>
+                <th>beglichen</th>
+                <th>download</th>
+            </tr>
+            <tr class="tr1">
+                <td class="b2">000001                      </td>
+                <td class="b2">2012-01-01                  </td>
+                <td class="b2">ja                          </td>
+                <td class="b2"><a href="#"> [download] </a></td>
+            </tr>
+            <tr class="tr1 grey">
+                <td class="b2">000002                      </td>
+                <td class="b2">2013-02-01                  </td>
+                <td class="b2">ja                          </td>
+                <td class="b2"><a href="#"> [download] </a></td>
+            </tr>
+            <tr class="tr1">
+                <td class="b2">000003                      </td>
+                <td class="b2">2013-09 -01                 </td>
+                <td class="b2">ausstehend                  </td>
+                <td class="b2"><a href="#"> [download] </a></td>
+            </tr>
+        </table>
+    </div>
