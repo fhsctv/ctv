@@ -28,13 +28,13 @@ return array(
                         'label' => 'Infoscript',
                         'route' => 'administration/infoscript/default',
                         'controller' => 'Infoscript',
-                        'action' => 'show-infoscript',
+                        'action' => 'show',
                     ),
                     'anzeige' => array(
                         'label' => 'Anzeige',
                         'route' => 'administration/anzeige/default',
                         'controller' => 'Anzeige',
-                        'action' => 'show-anzeige',
+                        'action' => 'show',
                     ),
                 )
             ),

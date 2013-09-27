@@ -23,6 +23,7 @@ final class Infoscript extends AbstractService implements IService {
 
 
 
+
     //--------------------------------------------------------------------------
     // Services for InfoscriptModel
     //--------------------------------------------------------------------------
@@ -86,15 +87,23 @@ final class Infoscript extends AbstractService implements IService {
     }
 
 
-    public function save(IEntity $infoscriptModel){
+    public function save($infoscript){
 
-        return $this->getTable()->save($infoscriptModel);
+        assert(is_array($infoscript) || is_a($infoscript, 'Administration\Model\IEntity'));
+
+        if(is_object($infoscript)){
+            return $this->getTable()->save($infoscript);
+        }
+
+        $infoscriptEntity = $this->getHydrator()->hydrate($infoscript, $this->createModel());
+        return $this->getTable()->save($infoscriptEntity);
+
     }
 
 
     public function delete($id){
-        if(!$id)
-            throw new \Exception('No id given');
+
+        assert(!is_null($id) && is_numeric($id));
 
         return $this->getTable()->delete( (int) $id );
     }

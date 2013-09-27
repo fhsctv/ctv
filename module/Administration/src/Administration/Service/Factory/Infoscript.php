@@ -15,6 +15,7 @@ class Infoscript implements \Zend\ServiceManager\FactoryInterface {
         $infoscriptService = new InfoscriptService();
         $infoscriptService->setTable($sm->get('Administration\Model\Table\Infoscript'));
         $infoscriptService->setFormFactory($sm->get('Administration\Form\Factory\Infoscript'));
+        $infoscriptService->setHydrator($sm->get('hydrator'));
 
         return $infoscriptService;
     }

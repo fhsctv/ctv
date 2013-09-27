@@ -1,0 +1,35 @@
+<?php
+
+    use Administration\Model\Entity\Infoscript as InfoscriptModel;
+
+    $formActionUrl = $this->url($this->route, array('action' => $this->action));
+
+    $form = $this->form;
+    $form->setAttribute('action', $formActionUrl);
+    $form->prepare();
+
+    $partialFormElement = function($element) use ($form) {
+        return $this->partial($this->url($this->route).'/partial/formElement.phtml',array('formElement' => $form->get($element)));
+    };
+?>
+
+<h1>Administration Manager Infoscript erstellen</h1>
+
+
+
+
+
+<?= $this->form()->openTag($form); ?>
+<?= $this->formHidden($form->get(strtolower(InfoscriptModel::TBL_COL_ID)));?>
+
+<ul class="form-list">
+    <li><?= $partialFormElement(InfoscriptModel::TBL_COL_BEGIN_DATE); ?></li>
+    <li><?= $partialFormElement(InfoscriptModel::TBL_COL_END_DATE);   ?></li>
+    <li><?= $partialFormElement(InfoscriptModel::TBL_COL_URL);        ?></li>
+</ul>
+
+
+<?php
+    echo $this->formSubmit($form->get('submit'));
+    echo $this->form()->closeTag();
+?>

@@ -1,5 +1,20 @@
+<?php
 
-<?php $this->headTitle('Manager - Anzeige erstellen')?>
+    use Administration\Model\Entity\Anzeige as AnzeigeModel;
+
+    $form = $this->form;
+
+    $form->setAttribute('action', $this->url($this->route, array('action' => $this->action)));
+    $form->prepare();
+
+    $this->headTitle('Manager - Anzeige erstellen');
+
+    $partialFormElement = function($element) use ($form) {
+            return $this->partial($this->url($this->route).'/partial/formElement.phtml',array('formElement' => $form->get($element)));
+        };
+
+
+?>
 
 <h1>Administration Manager Anzeige erstellen</h1>
 
@@ -9,11 +24,6 @@
 
 <?php
 
-use Administration\Model\Entity\Anzeige as AnzeigeModel;
-
-$form = $this->form;
-$form->setAttribute('action', $this->url($this->route, array('action' => 'create-anzeige')));
-$form->prepare();
 
 echo $this->form()->openTag($form);
 echo $this->formHidden($form->get('id'));

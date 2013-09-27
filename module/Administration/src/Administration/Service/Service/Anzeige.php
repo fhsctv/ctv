@@ -48,6 +48,8 @@ class Anzeige extends AbstractService implements IService {
             $form->bind($model);
             $form->get('submit')->setValue('Änderungen speichern');
 
+            $form->setHydrator($this->getHydrator());
+
             return $form;
 
         };
@@ -56,6 +58,8 @@ class Anzeige extends AbstractService implements IService {
         $newForm  = function($customers, $displays){
             $form = new AnzeigeForm($customers, null, $displays, null);
             $form->get('submit')->setValue('Anzeige speichern');
+
+            $form->setHydrator($this->getHydrator());
 
             return $form;
 
@@ -77,31 +81,32 @@ class Anzeige extends AbstractService implements IService {
     }
 
 
-    public function fetchAllActive($display){
+    public function fetchAllActive($display = null){
         return $this->getTable()->fetchAllActive($display);
     }
 
 
-    public function fetchAllOutdated($display){
+    public function fetchAllOutdated($display = null){
         return $this->getTable()->fetchAllOutdated($display);
     }
 
 
-    public function fetchAllFuture($display){
+    public function fetchAllFuture($display = null){
         return $this->getTable()->fetchAllFuture($display);
     }
 
 
-    public function save(Model\IEntity $anzeigeModel){
+    public function save($anzeige){
 
-        $urlEntity = new Entity\Url();
-        $urlEntity->setUrl($anzeigeModel->getUrl());
+        assert(is_array($anzeige) || is_a($anzeige, 'Administration\Model\IEntity'));
+
+        $urlEntity = (new Entity\Url())->setUrl($anzeige->getUrl());
+
         $id = $this->getUrlTable()->save($urlEntity);
 
-        $anzeigeModel->setSuchId($id);
+        $anzeige->setSuchId($id);
 
-
-        return $this->getTable()->save($anzeigeModel);
+        return $this->getTable()->save($anzeige);
     }
 
 
@@ -123,6 +128,9 @@ class Anzeige extends AbstractService implements IService {
 
 
     public function delete($id){
+
+        assert(!is_null($id) && is_numeric($id));
+
         return $this->getTable()->delete( (int) $id );
     }
 

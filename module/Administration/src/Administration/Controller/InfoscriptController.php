@@ -3,8 +3,6 @@
 namespace Administration\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
-
 use Administration\Form\Form\DeleteForm;
 
 class InfoscriptController extends AbstractActionController {
@@ -13,125 +11,97 @@ class InfoscriptController extends AbstractActionController {
      * GET- parameters are defined in the router of the module.config.php.
      * The id - parameter determines which slide has to be shown
      */
-    const PARAM_ID      = 'id';
-
-    /**
-     * GET- parameters are defined in the router of the module.config.php.
-     * The display - parameter determines which display is active
-     */
-    const PARAM_DISPLAY = 'display';
+    const PARAM_ID = 'id';
 
     const ROUTE_DEFAULT = 'administration/infoscript/default';
 
-    const FLASHMESSENGER_CREATE_SUCCESS   = 'Erstellen erfolgreich!';
-    const FLASHMESSENGER_EDIT_SUCCESS     = 'Bearbeiten erfolgreich!';
-    const FLASHMESSENGER_DELETE_SUCCESS   = 'Löschen erfolgreich!';
-    const FLASHMESSENGER_DELETE_CANCELED  = 'Löschen abgebrochen!';
+    const FLASHMESSENGER_CREATE_SUCCESS  = 'Erstellen erfolgreich!';
+    const FLASHMESSENGER_EDIT_SUCCESS    = 'Bearbeiten erfolgreich!';
+    const FLASHMESSENGER_DELETE_SUCCESS  = 'Löschen erfolgreich!';
+    const FLASHMESSENGER_DELETE_CANCELED = 'Löschen abgebrochen!';
 
-
-
-    public function indexAction() {
+    public function indexAction()  {
         $content = __METHOD__ . "<br/>";
 
         return array('content' => $content);
     }
 
-
-
-    public function showInfoscriptAction() {
-        $content = __METHOD__;
-
-
-        
+    public function showAction()   {
 
         $active   = $this->getService('Infoscript')->fetchAllActive();
         $outdated = $this->getService('Infoscript')->fetchAllOutdated();
         $future   = $this->getService('Infoscript')->fetchAllFuture();
 
-        $viewModel = new ViewModel(
-                array('content'      => $content,
-                      'active'       => $active,
-                      'outdated'     => $outdated,
-                      'future'       => $future,
-                      'flashMessagesSuccess' => $this->flashMessenger()->getSuccessMessages(),
-                      'flashMessagesInfo'    => $this->flashMessenger()->getInfoMessages(),
-                      'flashMessagesFail'    => $this->flashMessenger()->getErrorMessages(),
-                      'route' => self::ROUTE_DEFAULT,
-                     )
+        return array(
+            'active'               => $active,
+            'outdated'             => $outdated,
+            'future'               => $future,
+            'flashMessagesSuccess' => $this->flashMessenger()->getSuccessMessages(),
+            'flashMessagesInfo'    => $this->flashMessenger()->getInfoMessages(),
+            'flashMessagesFail'    => $this->flashMessenger()->getErrorMessages(),
+            'route'                => self::ROUTE_DEFAULT,
         );
-
-        return $viewModel;
     }
 
-    public function detailInfoscriptAction(){
+    public function detailAction() {
 
-        $id = $this->params()->fromRoute('id');
+        $id = $this->getIdParam();
 
-        if(!$id){
-            $this->flashMessenger()->addErrorMessage('Dieses Infoscript gibt es nicht');
-            return $this->redirect()->toRoute(self::ROUTE_DEFAULT, array('action' => 'show-infoscript'));
+        if (!$id) {
+            return $this->error('Dieses Infoscript gibt es nicht');
         }
 
-        return array('infoscript' => $this->getService('Infoscript')->get($id), 'route' => self::ROUTE_DEFAULT, );
+        return array('infoscript' => $this->getService('Infoscript')->get($id), 'route' => self::ROUTE_DEFAULT,);
+    }
 
+    public function createAction() {
 
+        $form = $this->getService()->getForm();
+
+        if (!$this->hasFormData()) {
+            return $this->formView($form, 'create');
+        }
+
+        if (!$form->setData($this->getFormData())->isValid()) {
+            return $this->formView($form, 'create');
+        }
+
+        $this->getService()->save($form->getData());
+
+        return $this->success(self::FLASHMESSENGER_CREATE_SUCCESS);
 
     }
 
-    public function createInfoscriptAction(){
+    public function editAction()   {
 
-        $form       = $this->getService('Infoscript')->getForm();
+        $id = $this->getIdParam();
 
-        if(!$this->getRequest()->isPost()){
-            return array('form' => $form, 'route' => self::ROUTE_DEFAULT,);
+        if (!$id) {
+            return $this->redirectToAction('create');
         }
 
-        if($this->createInfoscriptUsingFormData($form, self::FLASHMESSENGER_CREATE_SUCCESS)){
-            return $this->redirect()->toRoute(self::ROUTE_DEFAULT,
-                    array('action' => 'show-infoscript'));
+        $infoscript = $this->getService()->get($id);
+        $form       = $this->getService()->getForm($infoscript);
+
+        if (!$this->hasFormData()) {
+            return $this->formView($form, 'edit', $id);
         }
 
-        return array('form' => $form, 'route' => self::ROUTE_DEFAULT,);
+        if (!$form->setData($this->getFormData())->isValid()) {
+            return $this->formView($form, 'edit', $id);
+        }
+
+        $this->getService()->save($form->getData());
+
+        return $this->success(self::FLASHMESSENGER_EDIT_SUCCESS);
     }
 
-
-    public function editInfoscriptAction(){
-
-        $id = (int) $this->params()->fromRoute(self::PARAM_ID,0);
+    public function deleteAction() {
+        $id = (int) $this->params()->fromRoute('id', 0);
 
         if (!$id) {
             return $this->redirect()->toRoute(self::ROUTE_DEFAULT, array(
-                'action' => 'create-infoscript'
-            ));
-        }
-
-        $infoscript = $this->getService('Infoscript')->get($id);
-
-
-        $form       = $this->getService('Infoscript')->getForm($infoscript);
-
-        if(!$this->getRequest()->isPost()){
-            return array('form' => $form, 'id'=>$id, 'route' => self::ROUTE_DEFAULT,);
-        }
-
-
-
-        if($this->createInfoscriptUsingFormData($form, self::FLASHMESSENGER_EDIT_SUCCESS)){
-            return $this->redirect()->toRoute(self::ROUTE_DEFAULT,
-                    array('action' => 'show-infoscript'));
-        }
-
-
-        return array('form' => $form,'id' => $id, 'route' => self::ROUTE_DEFAULT,);
-    }
-
-
-    public function deleteInfoscriptAction(){
-        $id = (int) $this->params()->fromRoute('id',0);
-
-        if (!$id) {
-            return $this->redirect()->toRoute(self::ROUTE_DEFAULT, array(
-                'action' => 'show-infoscript'
+                        'action' => 'show'
             ));
         }
 
@@ -139,55 +109,23 @@ class InfoscriptController extends AbstractActionController {
         $infoscript = $this->getService('Infoscript')->get($id);
 
 
-        if ($this->getRequest()->isPost()) {
-            $del = $this->getRequest()->getPost('del', 'nein');
-
-            if ($del == 'ja') {
-                $id = (int) $this->getRequest()->getPost('id');
-                $this->getService('Infoscript')->delete($id);
-                $this->flashMessenger()->addSuccessMessage(self::FLASHMESSENGER_DELETE_SUCCESS);
-            }
-            else {
-                $this->flashMessenger()->addInfoMessage(self::FLASHMESSENGER_DELETE_CANCELED);
-            }
-
-            return $this->redirect()->toRoute(self::ROUTE_DEFAULT, array('action' => 'show-infoscript'));
-
+        if (!$this->getRequest()->isPost()) {
+            return array('form' => $form, 'id' => $id, 'infoscript' => $infoscript, 'route' => self::ROUTE_DEFAULT,);
         }
 
-        return array('form' => $form, 'id' => $id, 'infoscript' => $infoscript, 'route' => self::ROUTE_DEFAULT,);
+        $del = $this->getRequest()->getPost('del', 'nein');
 
-    }
-
-
-    private function createInfoscriptUsingFormData($form, $successMessage){
-
-        $form->setData($this->getRequest()->getPost());
-
-//        var_dump($this->getRequest()->getPost(), $form);
-
-        if($form->isValid()){
-
-            $data = $form->getData(); //$form->getData() returns infoscriptModel on edit of an infoscript, because it used bind() method of form
-
-            if(is_object($data)){
-                $this->getService('Infoscript')->save($data);
-                return true;
-            }
-
-            $infoscript = $this->getService('Infoscript')->createModel();
-            //$infoscript->exchangeArray($form->getData()); //$form->getData() returns array on creation of new infoscript
-            $this->getServiceLocator()->get('hydrator')->hydrate($form->getData(), $infoscript);
-
-            var_dump($infoscript);
-
-            $this->getService('Infoscript')->save($infoscript);
-
-            $this->flashMessenger()->addSuccessMessage($successMessage);
-            return true;
+        if ($del == 'ja') {
+            $id = (int) $this->getRequest()->getPost('id');
+            $this->getService('Infoscript')->delete($id);
+            $this->flashMessenger()->addSuccessMessage(self::FLASHMESSENGER_DELETE_SUCCESS);
+        } else {
+            $this->flashMessenger()->addInfoMessage(self::FLASHMESSENGER_DELETE_CANCELED);
         }
-        return false;
+
+        return $this->redirect()->toRoute(self::ROUTE_DEFAULT, array('action' => 'show'));
     }
+
 
 
     /**
@@ -196,10 +134,43 @@ class InfoscriptController extends AbstractActionController {
      * @return object
      * @throws Exception\ServiceNotFoundException
      */
-    public function getService($name){
-
-        return $this->getServiceLocator()->get('Administration\Service\\' . $name);
+    public function getService()   {
+        return $this->getServiceLocator()->get('Administration\Service\Infoscript');
     }
 
+
+    private function hasFormData() {
+        return $this->getRequest()->isPost();
+    }
+
+    private function getFormData($key = null, $default = null) {
+        return $this->getRequest()->getPost($key, $default);
+    }
+
+    private function formView($form, $action, $id = null){
+        return is_null($id)
+            ? array('form' => $form, 'action' => $action, 'route' => self::ROUTE_DEFAULT)
+            : array('form' => $form, 'action' => $action, 'route' => self::ROUTE_DEFAULT, 'id' => $id);
+    }
+
+    private function success($message){
+
+        $this->flashMessenger()->addSuccessMessage($message);
+
+        return $this->redirectToAction('show');
+    }
+
+    private function error($message){
+        $this->flashMessenger()->addErrorMessage($message);
+            return $this->redirectToAction('show');
+    }
+
+    private function redirectToAction($action) {
+        return $this->redirect()->toRoute(self::ROUTE_DEFAULT, array('action' => $action));
+    }
+
+    private function getIdParam(){
+        return (int) $this->params()->fromRoute(self::PARAM_ID, null);
+    }
 
 }

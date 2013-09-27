@@ -30,14 +30,23 @@ class Kunde extends AbstractService implements IService {
     }
 
     public function get($id) {
+
+        assert(!is_null && is_numeric($id));
+
         return $this->getTable()->get($id);
     }
 
-    public function save(\Administration\Model\IEntity $model) {
-        return $this->getTable()->save($model);
+    public function save($kunde) {
+
+        assert(is_array($kunde) || is_a($kunde, 'Administration\Model\IEntity'));
+
+        return $this->getTable()->save($kunde);
     }
 
     public function delete($id) {
+
+        assert(!is_null($id) && is_numeric($id));
+
         return $this->getTable()->delete($id);
     }
 

@@ -10,7 +10,7 @@ interface IService {
 
     public function get($id);
 
-    public function save(IEntity $model);
+    public function save($data);
 
     public function delete($id);
 }

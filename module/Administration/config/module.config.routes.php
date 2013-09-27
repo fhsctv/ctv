@@ -83,7 +83,7 @@ return array(
                                     ),
                                 ),
                             ),
-                            'show-anzeige' => array(
+                            'show' => array(
                                 'type' => 'Segment',
                                 'options' => array(
                                     'route' => '[/:action[/display=:display]]',
@@ -94,7 +94,7 @@ return array(
                                         'id' => '[0-9]*',
                                     ),
                                     'defaults' => array(
-                                        'action' => 'show-anzeige',
+                                        'action' => 'show',
                                     ),
                                 ),
                             ),
