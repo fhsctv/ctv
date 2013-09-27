@@ -21,7 +21,15 @@ class Infoscript implements IEntity {
     }
 
     public function setId($id) {
+
+        if(is_null($id) || empty($id)){
+            return $this;
+        }
+
         $this->id = $id;
+
+        assert(!(is_null($this->id) || empty($this->id)));
+
         return $this;
     }
 

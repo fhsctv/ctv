@@ -1,7 +1,7 @@
 
-<?php $this->headTitle('Manager - Infoscript erstellen')?>
 
-<h1>Administration Manager Infoscript erstellen</h1>
+
+<h1>Administration Manager Infoscript bearbeiten</h1>
 
 
 
@@ -12,22 +12,20 @@
 use Administration\Model\Entity\Infoscript as InfoscriptModel;
 
 $form = $this->form;
-$form->setAttribute('action', $this->url($this->route, array('action' => 'create-infoscript')));
+$form->setAttribute('action', $this->url($this->route, array('action' => 'edit', 'id' => $this->id)));
 $form->prepare();
 
 echo $this->form()->openTag($form);
 echo $this->formHidden($form->get(strtolower(InfoscriptModel::TBL_COL_ID)));
 ?>
 
-
-
-<ul class="form-list">
+<ul>
     <li><?= $this->partial($this->url($this->route).'/partial/formElement.phtml',array('formElement' => $form->get(strtolower(InfoscriptModel::TBL_COL_BEGIN_DATE)))); ?></li>
     <li><?= $this->partial($this->url($this->route).'/partial/formElement.phtml',array('formElement' => $form->get(strtolower(InfoscriptModel::TBL_COL_END_DATE))));   ?></li>
     <li><?= $this->partial($this->url($this->route).'/partial/formElement.phtml',array('formElement' => $form->get(strtolower(InfoscriptModel::TBL_COL_URL))));        ?></li>
+
+
+    <?= $this->formSubmit($form->get('submit')); ?>
 </ul>
 
-
-<?php
-echo $this->formSubmit($form->get('submit'));
-echo $this->form()->closeTag(); ?>
+<?php echo $this->form()->closeTag(); ?>

@@ -21,11 +21,14 @@ class Url implements \Zend\ServiceManager\FactoryInterface, IService{
         return $this->getUrlTable()->fetchAll();
     }
 
-    public function save(IEntity $urlModel){
+    public function save($urlModel){
         return $this->getUrlTable()->save($urlModel);
     }
 
     public function delete($id){
+
+        assert(!is_null($id) && is_numeric($id));
+
         return $this->getUrlTable()->delete( (int) $id );
     }
 

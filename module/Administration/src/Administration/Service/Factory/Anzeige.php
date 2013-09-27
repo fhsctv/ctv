@@ -38,6 +38,8 @@ class Anzeige implements \Zend\ServiceManager\FactoryInterface {
         $anzeigeService->setCustomers($array_transform($sm->get('Administration\Service\Kunde'), 'par_id', 'par_name'));
 
 
+        $anzeigeService->setHydrator($sm->get('hydrator_anzeige'));
+
         return $anzeigeService;
     }
 

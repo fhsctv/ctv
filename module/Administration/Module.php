@@ -68,7 +68,9 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface, Se
             ),
             'invokables' => array(
                 'Administration\InputFilter\Infoscript' => '\Administration\Form\InputFilter\Infoscript',
-                'hydrator' => '\Zend\Stdlib\Hydrator\ClassMethods'
+                'hydrator'               => '\Zend\Stdlib\Hydrator\ClassMethods',
+                'hydrator_anzeige'       => '\Administration\Model\Mapper\Anzeige',
+//                'hydrator_infoscript' => '\Administration\Model\Mapper\Infoscript',
              ),
             'shared' => array(
                 'Administration\Form\Factory\Infoscript' => false
@@ -125,8 +127,8 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface, Se
         $anzeigeTableGateway    = function($sm) {
 
             $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-//            $resultSetPrototype = new HydratingResultSet($sm->get('hydrator'), new Entity\Anzeige());
-            $resultSetPrototype = new ResultSet(ResultSet::TYPE_ARRAYOBJECT, new Entity\Anzeige());
+            $resultSetPrototype = new HydratingResultSet($sm->get('hydrator_anzeige'), new Entity\Anzeige());
+//            $resultSetPrototype = new ResultSet(ResultSet::TYPE_ARRAYOBJECT, new Entity\Anzeige());
 
             $sequence = new \Zend\Db\TableGateway\Feature\SequenceFeature('id', 'anzeige_new_id_seq');
 
