@@ -23,25 +23,20 @@ class AnzeigeForm extends Form {
             )
         );
 
-        // <editor-fold defaultstate="collapsed" desc="begin_date">
         $this->add(array(
             'name' => Anzeige::TBL_COL_BEGIN_DATE,
             'attributes' => array('type' => 'text', 'value' => date('d.m.Y'),),
             'options' => array('label' => 'Schaltungsanfang'),
                 )
         );
-// </editor-fold>
 
-        // <editor-fold defaultstate="collapsed" desc="booked_weeks">
         $this->add(array(
             'name' => Anzeige::TBL_COL_BOOKED_WEEKS,
             'attributes' => array('type' => 'text', 'value' => 0),
             'options' => array('label' => 'Gebuchte Wochen'),
                 )
         );
-        // </editor-fold>
 
-        // <editor-fold defaultstate="collapsed" desc="customer">
         $this->add(array(
             'type' => 'Zend\Form\Element\Select',
             'name' => Anzeige::TBL_COL_CUSTOMER_ID,
@@ -54,16 +49,7 @@ class AnzeigeForm extends Form {
             )
                 )
         );
-        // </editor-fold>
 
-        // <editor-fold defaultstate="collapsed" desc="display">
-
-//        $this->add(array(
-//            'name' => Anzeige::TBL_COL_DISPLAY_ID,
-//            'attributes' => array('type' => 'text',),
-//            'options' => array('label' => 'Monitor', 'value' => 41),
-//                )
-//        );
         $this->add(array(
             'type' => 'Zend\Form\Element\Select',
             'name' => Anzeige::TBL_COL_DISPLAY_ID,
@@ -77,18 +63,14 @@ class AnzeigeForm extends Form {
             )
                 )
         );
-        // </editor-fold>
 
-        // <editor-fold defaultstate="collapsed" desc="url">
         $this->add(array(
             'name' => Anzeige::TBL_COL_URL,
             'attributes' => array('type' => 'url', 'value' => "http://"),
             'options' => array('label' => 'Url'),
                 )
         );
-        // </editor-fold>
 
-        // <editor-fold defaultstate="collapsed" desc="submit">
         $this->add(array(
             'name' => 'submit',
             'attributes' => array('type' => 'submit',
@@ -96,8 +78,8 @@ class AnzeigeForm extends Form {
                 'id' => 'submitbutton'
             ),
                 )
-        ); // </editor-fold>
-        }
+        );
+    }
 
 }
 

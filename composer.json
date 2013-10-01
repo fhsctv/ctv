@@ -13,7 +13,6 @@
         "bjyoungblood/BjyProfiler": "dev-master",
         "zendframework/zend-developer-tools": "dev-master",
         "zendframework/zftool": "dev-master",
-        "bjyoungblood/bjy-authorize": "dev-master",
         "zf-commons/zfc-user": "dev-master"
     },
     "minimum-stability": "dev"

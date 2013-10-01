@@ -174,9 +174,10 @@ class Anzeige implements IEntity {
 //        return $this;
 //    }
 //
-//    public function getArrayCopy(){
-//        return $this->toArray();
-//    }// </editor-fold>
+    public function getArrayCopy(){
+        return $this->toArray();
+    }
+// </editor-fold>
 
     public function toDbArray(){
 
